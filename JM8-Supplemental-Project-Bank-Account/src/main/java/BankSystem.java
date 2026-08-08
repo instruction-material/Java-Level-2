@@ -36,7 +36,6 @@ public class BankSystem {
         } catch (IOException e) {
             System.out.println("Error saving accounts.");
         }
-
     }
 
     // Check if a username already exists
@@ -46,11 +45,12 @@ public class BankSystem {
 
     // UPDATED
     // Register a new account with the given details
-    public void register(String firstName, String lastName, String username, String password) {
+    public void register(String firstName, String lastName, String username,
+                         String password) {
 
-        accounts.put(username, new BankAccount(firstName, lastName, username, password));
+        accounts.put(username,
+                     new BankAccount(firstName, lastName, username, password));
         saveAccounts(); // Save the updated accounts list to the file
-
     }
 
     // Login with the provided username and password
@@ -62,5 +62,4 @@ public class BankSystem {
             return null; // Login failed
         }
     }
-
 }

@@ -19,14 +19,14 @@ public class MazeGame {
         timer.init();
 
         while (running) {
-            // clear the console screen 
-            System.out.print("\033[H\033[2J"); 
+            // clear the console screen
+            System.out.print("\033[H\033[2J");
             // print maze and player location
             maze.print(player);
             // print the time left before getting input
             System.out.println("Time left: " + timer.getTime() + " seconds");
 
-            // get input from the user 
+            // get input from the user
             System.out.print("Enter your move (WASD): ");
             char move = scanner.next().toUpperCase().charAt(0);
 
@@ -36,12 +36,14 @@ public class MazeGame {
 
                 if (maze.isExit(player.getX(), player.getY())) {
                     maze.print(player);
-                    System.out.println("Congratulations! You've reached the exit!");
+                    System.out.println(
+                        "Congratulations! You've reached the exit!");
                     running = false;
                 }
             } else {
                 System.out.println("Invalid move. Try again.");
-            } if (timer.getTime() <= 0) {
+            }
+            if (timer.getTime() <= 0) {
                 System.out.println("Time's up! You failed to reach the exit.");
                 running = false;
             }
@@ -62,7 +64,7 @@ public class MazeGame {
         return false;
     }
 
-    // execute the next move 
+    // execute the next move
     private void performMove(char direction) {
         if (direction == 'W') {
             player.move(player.getX(), player.getY() - 1);
@@ -74,4 +76,4 @@ public class MazeGame {
             player.move(player.getX() + 1, player.getY());
         }
     }
-    }
+}

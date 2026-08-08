@@ -1,26 +1,26 @@
 public class Card implements Comparable<Card> {
-  // Instance variables
-  public int rank;
-  public int suit;
+    // Instance variables
+    public int rank;
+    public int suit;
 
-  // Constructor
-  public Card(int r, int s) {
-    rank = r;
-    suit = s;
-  }
+    // Constructor
+    public Card(int r, int s) {
+        rank = r;
+        suit = s;
+    }
 
-  // Getters
-  public int getRank() {
-    return rank;
-  }
+    // Getters
+    public int getRank() {
+        return rank;
+    }
 
-  public int getSuit() {
-    return suit;
-  }
+    public int getSuit() {
+        return suit;
+    }
 
-  // toString
-  public String toString() {
-    /* 
+    // toString
+    public String toString() {
+        /*
     // Optionally, add this set of conditional statements to change make the correct name appear instead of the numbers 1, 11, 12, and 13
     String output = "";
     if (rank == 1) {
@@ -36,38 +36,34 @@ public class Card implements Comparable<Card> {
     }
     */
 
-    String output = rank + " of ";
-    if (suit == 1) {
-      output += "clubs";
-    } else if (suit == 2) {
-      output += "diamonds";
-    } else if (suit == 3) {
-      output += "hearts";
-    } else if (suit == 4) {
-      output += "spades";
+        String output = rank + " of ";
+        if (suit == 1) {
+            output += "clubs";
+        } else if (suit == 2) {
+            output += "diamonds";
+        } else if (suit == 3) {
+            output += "hearts";
+        } else if (suit == 4) {
+            output += "spades";
+        }
+
+        return output;
     }
 
-    return output;
-  }
-
-  // compareTo
-  public int compareTo(Card other) {
-    if (getSuit() < other.getSuit()) {
-      return -1;
+    // compareTo
+    public int compareTo(Card other) {
+        if (getSuit() < other.getSuit()) {
+            return -1;
+        } else if (getSuit() > other.getSuit()) {
+            return 1;
+        } else {
+            if (getRank() < other.getRank()) {
+                return -1;
+            } else if (getRank() > other.getRank()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
-    else if (getSuit() > other.getSuit()) {
-      return 1;
-    }
-    else {
-      if (getRank() < other.getRank()) {
-        return -1;
-      }
-      else if (getRank() > other.getRank()) {
-        return 1;
-      }
-      else {
-        return 0;
-      }
-    }
-  }
 }

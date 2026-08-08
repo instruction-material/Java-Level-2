@@ -3,8 +3,9 @@ class Car extends LandVehicle {
     private String bodyStyle;
     private String engineType;
 
-    public Car(String make, String model, int year, String color, int numberOfWheels, String fuelType, double miles,
-            int numberOfDoors, String bodyStyle, String engineType) {
+    public Car(String make, String model, int year, String color,
+               int numberOfWheels, String fuelType, double miles,
+               int numberOfDoors, String bodyStyle, String engineType) {
         super(make, model, year, color, numberOfWheels, fuelType, miles);
         this.numberOfDoors = numberOfDoors;
         this.bodyStyle = bodyStyle;
@@ -36,7 +37,8 @@ class Car extends LandVehicle {
     }
 
     public void displayDetails() {
-        super.displayDetails(); // Call the superclass method to print common details
+        super
+            .displayDetails(); // Call the superclass method to print common details
         System.out.println("  Doors: " + getNumberOfDoors());
         System.out.println("  Body Style: " + getBodyStyle());
         System.out.println("  Engine: " + getEngineType());

@@ -1,22 +1,22 @@
 public class DanceLesson extends Lesson {
-  int difficulty;
-  String danceType;
+    int difficulty;
+    String danceType;
 
-  public DanceLesson(int d, int s, int di, String t) {
-    super(d, s, "dance");
-    difficulty = di;
-    danceType = t;
-  }
-  
-  public void setDifficulty(int di) {
-    difficulty = di;
-  }
+    public DanceLesson(int d, int s, int di, String t) {
+        super(d, s, "dance");
+        difficulty = di;
+        danceType = t;
+    }
 
-  public boolean hasSameDifficulty(DanceLesson d) {
-    return difficulty == d.difficulty;
-  }
+    public void setDifficulty(int di) {
+        difficulty = di;
+    }
 
-  public boolean easierThan(DanceLesson d) {
-    return difficulty < d.difficulty;
-  }
+    public boolean hasSameDifficulty(DanceLesson d) {
+        return difficulty == d.difficulty;
+    }
+
+    public boolean easierThan(DanceLesson d) {
+        return difficulty < d.difficulty;
+    }
 }

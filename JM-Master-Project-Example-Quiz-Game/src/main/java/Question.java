@@ -6,7 +6,8 @@ public class Question {
     private String correctAnswer;
 
     // Constructor
-    public Question(String question, ArrayList<String> options, String correctAnswer){
+    public Question(String question, ArrayList<String> options,
+                    String correctAnswer) {
         this.question = question;
         this.options = options;
         this.correctAnswer = correctAnswer;

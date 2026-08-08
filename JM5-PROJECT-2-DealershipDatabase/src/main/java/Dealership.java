@@ -19,8 +19,8 @@ public class Dealership {
         ArrayList<Car> results = new ArrayList<>();
         for (Car car : inventory.values()) {
             if ((make == null || car.getMake().equalsIgnoreCase(make)) &&
-                    (model == null || car.getModel().equalsIgnoreCase(model)) &&
-                    (year == 0 || car.getYear() == year)) {
+                (model == null || car.getModel().equalsIgnoreCase(model)) &&
+                (year == 0 || car.getYear() == year)) {
                 results.add(car);
             }
         }

@@ -9,13 +9,15 @@ public class BankSystem {
     }
 
     // Check if a username already exists
-    public boolean usernameExists(String username)     {
+    public boolean usernameExists(String username) {
         return accounts.containsKey(username);
     }
 
     // Register a new account with the given details
-    public void register(String firstName, String lastName, String username, String password) {
-        accounts.put(username, new BankAccount(firstName, lastName, username, password));
+    public void register(String firstName, String lastName, String username,
+                         String password) {
+        accounts.put(username,
+                     new BankAccount(firstName, lastName, username, password));
     }
 
     // Login with the provided username and password

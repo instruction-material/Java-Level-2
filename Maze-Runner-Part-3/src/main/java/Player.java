@@ -1,7 +1,8 @@
 public class Player {
     private int x;
     private int y;
-    private char symbol = 'P'; // can change to use a different symbol for your player 
+    private char symbol =
+        'P'; // can change to use a different symbol for your player
 
     public Player(int startX, int startY) {
         x = startX;

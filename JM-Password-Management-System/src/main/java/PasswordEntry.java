@@ -4,7 +4,8 @@ public class PasswordEntry {
     private String password; // Store encrypted password
     private String notes;
 
-    public PasswordEntry(String serviceName, String username, String password, String notes) {
+    public PasswordEntry(String serviceName, String username, String password,
+                         String notes) {
         this.serviceName = serviceName;
         this.username = username;
         this.password = password; // You might want to encrypt this
@@ -17,8 +18,16 @@ public class PasswordEntry {
     }
 
     // Getters and setters
-    public String getServiceName() { return serviceName; }
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
-    public String getNotes() { return notes; }
+    public String getServiceName() {
+        return serviceName;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public String getNotes() {
+        return notes;
+    }
 }

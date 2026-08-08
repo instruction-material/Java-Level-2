@@ -26,7 +26,7 @@ public class Maze {
             System.out.println("Error, incorrect file!");
         }
 
-        // set up grid 
+        // set up grid
         int height = lines.size();
         int width = lines.get(0).length();
         char[][] tempGrid = new char[height][width];
@@ -59,14 +59,16 @@ public class Maze {
                 } else {
                     System.out.print(grid[y][x]);
                 }
-            } System.out.println();
+            }
+            System.out.println();
         }
     }
 
-    // check character at the given row and col represents a valid move 
+    // check character at the given row and col represents a valid move
     // a valid move cannot go past the edge of the board and cannot be a '#'
     public boolean isValidMove(int x, int y) {
-        if (x >= 0 && x < grid[0].length && y >= 0 && y < grid.length && grid[y][x] != '#'){
+        if (x >= 0 && x < grid[0].length && y >= 0 && y < grid.length &&
+            grid[y][x] != '#') {
             return true;
         } else {
             return false;

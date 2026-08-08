@@ -3,8 +3,8 @@ class LandVehicle extends Vehicle {
     private String fuelType;
     private double miles;
 
-    public LandVehicle(String make, String model, int year, String color, int numberOfWheels, String fuelType,
-            double miles) {
+    public LandVehicle(String make, String model, int year, String color,
+                       int numberOfWheels, String fuelType, double miles) {
         super(make, model, year, color);
         this.numberOfWheels = numberOfWheels;
         this.fuelType = fuelType;
@@ -33,6 +33,5 @@ class LandVehicle extends Vehicle {
 
     public void displayDetails() {
         // Insert Missing Code Below
-
     }
 }

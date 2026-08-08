@@ -1,13 +1,12 @@
 public class Main {
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    // Create Motorcycle
+        // Create Motorcycle
 
-    // Test Motorcycle Methods
+        // Test Motorcycle Methods
 
-    // Create Car
+        // Create Car
 
-    // Test Car Methods
-
-  }
+        // Test Car Methods
+    }
 }

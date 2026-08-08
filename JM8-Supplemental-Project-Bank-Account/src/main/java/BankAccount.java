@@ -6,7 +6,8 @@ public class BankAccount {
     private double balance;
 
     // Constructor to initialize a new bank account
-    public BankAccount(String firstName, String lastName, String username, String password) {
+    public BankAccount(String firstName, String lastName, String username,
+                       String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -28,7 +29,8 @@ public class BankAccount {
     // ADDED
     // Convert the account details to a string for saving to a file
     public String toFileString() {
-        return firstName + "," + lastName + "," + username + "," + password + "," + balance;
+        return firstName + "," + lastName + "," + username + "," + password +
+            "," + balance;
     }
 
     // Get the username associated with the account
@@ -57,7 +59,6 @@ public class BankAccount {
         }
 
         return false;
-
     }
 
     // Change the account password to a new password

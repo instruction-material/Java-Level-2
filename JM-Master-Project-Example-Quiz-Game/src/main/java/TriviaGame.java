@@ -4,13 +4,12 @@ import java.util.*;
 /* This project stores the question bank as a map where keys are categories and values are an ArrayList of Question objects for that category. There are many different ways to design a Triva Game project, please encourage your student to brainstorm and talk through their design ideas. */
 
 public class TriviaGame {
-    private Map<String, ArrayList<Question>> questionBank; 
+    private Map<String, ArrayList<Question>> questionBank;
     private int score;
 
     public TriviaGame() {
         questionBank = new HashMap<>();
         score = 0;
-
     }
 
     private void loadQuestionsFromFile() {
@@ -20,13 +19,16 @@ public class TriviaGame {
             while (myReader.hasNextLine()) {
                 String category = myReader.nextLine();
                 String questionText = myReader.nextLine();
-                ArrayList<String> options = new ArrayList<>(Arrays.asList(myReader.nextLine().split(",")));
+                ArrayList<String> options = new ArrayList<>(
+                    Arrays.asList(myReader.nextLine().split(",")));
                 String correctAnswer = myReader.nextLine();
-                Question question = new Question(questionText, options, correctAnswer);
+                Question question =
+                    new Question(questionText, options, correctAnswer);
 
                 // Add question to the appropriate category
                 if (questionBank.containsKey(category)) {
-                    ArrayList<Question> questionList = questionBank.get(category);
+                    ArrayList<Question> questionList =
+                        questionBank.get(category);
                     questionList.add(question);
                 } else {
                     ArrayList<Question> qs = new ArrayList<>();
@@ -38,7 +40,6 @@ public class TriviaGame {
             System.out.println("Error loading file!");
         }
     }
-
 
     // Method to display questions
     private void displayQuestion(Question question) {
@@ -62,21 +63,25 @@ public class TriviaGame {
             return;
         }
 
-        ArrayList<Question> questions = questionBank.get(category); 
+        ArrayList<Question> questions = questionBank.get(category);
         for (Question question : questions) {
             displayQuestion(question); // Display question and options
             System.out.print("Your answer (enter number): ");
             int answerIndex = scanner.nextInt() - 1;
 
-            if (question.getOptions().get(answerIndex).equals(question.getCorrectAnswer())) {
+            if (question.getOptions()
+                    .get(answerIndex)
+                    .equals(question.getCorrectAnswer())) {
                 System.out.println("Correct!\n");
                 score++;
             } else {
-                System.out.println("Wrong! Correct answer is: " + question.getCorrectAnswer() + "\n");
+                System.out.println("Wrong! Correct answer is: " +
+                                   question.getCorrectAnswer() + "\n");
             }
         }
 
-        System.out.println("Your final score: " + score + "/" + questions.size());
+        System.out.println("Your final score: " + score + "/" +
+                           questions.size());
         saveScore(score, category);
     }
 
@@ -87,7 +92,7 @@ public class TriviaGame {
             System.out.println("Your score has been saved.");
 
         } catch (IOException e) {
-          System.out.println("Error saving score.");
+            System.out.println("Error saving score.");
         }
     }
 

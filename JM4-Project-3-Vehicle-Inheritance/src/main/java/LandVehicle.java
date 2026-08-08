@@ -3,8 +3,8 @@ class LandVehicle extends Vehicle {
     private String fuelType;
     private double miles;
 
-    public LandVehicle(String make, String model, int year, String color, int numberOfWheels, String fuelType,
-            double miles) {
+    public LandVehicle(String make, String model, int year, String color,
+                       int numberOfWheels, String fuelType, double miles) {
         super(make, model, year, color);
         this.numberOfWheels = numberOfWheels;
         this.fuelType = fuelType;
@@ -39,9 +39,9 @@ class LandVehicle extends Vehicle {
         }
     }
 
-    
     public void displayDetails() {
-        super.displayDetails();// Call the superclass method to print common details
+        super
+            .displayDetails(); // Call the superclass method to print common details
         System.out.println("  Wheels: " + getNumberOfWheels());
         System.out.println("  Fuel Type: " + getFuelType());
         System.out.println("  Miles Driven: " + getMiles());
