@@ -1,12 +1,13 @@
-// Main.java
-
 class Main {
-    public static void main(String[] args) {
-
-        // constructor
-        Printer p1 = new Printer("This is a phrase we are going to print");
-
-        // test threading
-        p1.init();
+    public static void main(String[] args) throws InterruptedException {
+        var worker = new Thread(new Printer("A message from the worker"));
+        worker.start();
+        try {
+            worker.join();
+        } catch (InterruptedException interrupted) {
+            worker.interrupt();
+            throw interrupted;
+        }
+        System.out.println("Printing complete.");
     }
 }

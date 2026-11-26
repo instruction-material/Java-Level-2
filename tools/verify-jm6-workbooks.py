@@ -98,3 +98,8 @@ if __name__ == "__main__":
                 compile_to(legacy, output, names)
                 verify_demo(output, input_text, expected)
         print(f"Verified starter, solution and applicable original for {pack}", flush=True)
+    preview = ROOT / "JM6-Threading-Example/src/main/java"
+    with TemporaryDirectory(prefix="jm6-thread-preview-") as output:
+        compile_to(preview, output, ("Main.java", "Printer.java"))
+        verify_demo(output, "", ["A message from the worker"] * 3 + ["Printing complete."])
+    print("Verified bounded thread preview and completion line", flush=True)

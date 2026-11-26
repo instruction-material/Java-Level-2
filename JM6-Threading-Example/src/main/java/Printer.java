@@ -1,27 +1,22 @@
 public class Printer implements Runnable {
-    // Instance variables
-    private String phrase;
-    private Thread t;
+    private final String phrase;
 
-    // Constructor
-    public Printer(String p) {
-        phrase = p;
+    public Printer(String phrase) {
+        this.phrase = phrase;
     }
 
-    // The init method is used to begin the thread
-    public void init() {
-        t = new Thread(this);
-        t.start();
-    }
-
-    // The run method contains the code we want to repeat
+    @Override
     public void run() {
-        while (true) {
+        for (int index = 0; index < 3 && !Thread.currentThread().isInterrupted(); index++) {
             System.out.println(phrase);
-
+            if (index == 2) {
+                return;
+            }
             try {
                 Thread.sleep(1000);
-            } catch (Exception e) {
+            } catch (InterruptedException interrupted) {
+                Thread.currentThread().interrupt();
+                return;
             }
         }
     }
