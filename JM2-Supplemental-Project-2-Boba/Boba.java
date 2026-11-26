@@ -12,8 +12,7 @@ public class Boba {
 
     // overloaded constructor
     public Boba(String f, boolean i) {
-        flavor = f;
-        iced = i;
+        this(f, i, "");
     }
 
     public String getFlavor() {
@@ -34,7 +33,7 @@ public class Boba {
 
     // check if two orders are the same
     public boolean isSameOrder(Boba b) {
-        if (flavor.equals(b.getFlavor()) && iced == b.getIced() &&
+        if (b != null && flavor.equals(b.getFlavor()) && iced == b.getIced() &&
             topping.equals(b.getTopping())) {
             return true;
         } else {

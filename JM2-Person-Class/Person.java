@@ -11,8 +11,7 @@ public class Person {
 
     // overloaded constructors
     public Person(String n, int a, String g) {
-        name = n;
-        age = a;
+        this(n, a, Integer.parseInt(g));
     }
 
     // OPTIONAL: Overloaded constructor using 'this' keyword to call the main constructor
@@ -21,7 +20,7 @@ public class Person {
     }
 
     public Person() {
-        // name = "";   // do this to make the name non-null
+        this("Unknown", 0);
     }
 
     public int getAge() {

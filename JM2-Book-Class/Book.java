@@ -10,8 +10,7 @@ public class Book {
     }
 
     public Book(String t, String a) {
-        title = t;
-        author = a;
+        this(t, a, 0);
     }
 
     public String getTitle() {
@@ -27,15 +26,11 @@ public class Book {
     }
 
     public boolean hasSameAuthor(Book b) {
-        return author.equals(b.getAuthor());
+        return b != null && author.equals(b.getAuthor());
     }
 
     public boolean isSameBook(Book b) {
-        if (author.equals(b.getAuthor()) && (title.equals(b.getTitle()))) {
-            return true;
-        } else {
-            return false;
-        }
+        return hasSameAuthor(b) && title.equals(b.getTitle());
     }
 
     public String toString() {
