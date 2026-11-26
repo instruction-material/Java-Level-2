@@ -1,0 +1,10 @@
+import java.util.List;
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Correct: " + QuizRound.score(
+            List.of("Saturn", "oxygen", "Pacific"),
+            List.of(" SATURN ", "argon", "pacific")
+        ) + "/3");
+    }
+}

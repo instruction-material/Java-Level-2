@@ -1,5 +1,6 @@
 """Exercise the capstone and six distinct practice workbooks on Java 21."""
 
+import argparse
 import json
 import os
 from pathlib import Path
@@ -42,7 +43,11 @@ def verify_role(folder, output, workbook, role):
 if __name__ == "__main__":
     version = subprocess.check_output([JAVA / "javac", "-version"], text=True).strip()
     assert version == "javac 21" or version.startswith("javac 21."), version
-    for folder, workbook in WORKBOOKS.items():
+    parser = argparse.ArgumentParser(description="Run starter and solution contracts on Java 21.")
+    parser.add_argument("--fixture", type=Path, help="Select another workbook contract file.")
+    args = parser.parse_args()
+    workbooks = json.loads(args.fixture.read_text(encoding="utf-8")) if args.fixture else WORKBOOKS
+    for folder, workbook in workbooks.items():
         root = ROOT / folder
         for role in ("starter", "solution"):
             with TemporaryDirectory(prefix="java2-capstone-role-") as output:

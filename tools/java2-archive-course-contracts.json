@@ -1,0 +1,136 @@
+{
+  "Archive-Console-Echo": {
+    "files": [
+      "Main.java",
+      "ConsoleLine.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "ConsoleLine.java",
+    "demo": [
+      "Echo: [  red fox  ]"
+    ],
+    "starterDemo": [
+      "Echo: [null]"
+    ],
+    "firstFailure": "sample",
+    "checkLabel": "Checks passed.",
+    "legacy": false,
+    "input": ""
+  },
+  "Archive-Counted-Sum": {
+    "files": [
+      "Main.java",
+      "CountedSum.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "CountedSum.java",
+    "demo": [
+      "Sum: 9"
+    ],
+    "starterDemo": [
+      "Sum: 0"
+    ],
+    "firstFailure": "sample",
+    "checkLabel": "Checks passed.",
+    "legacy": false,
+    "input": ""
+  },
+  "Archive-Integer-File": {
+    "files": [
+      "Main.java",
+      "IntegerFile.java",
+      "ContractTests.java",
+      "README.md",
+      "values.txt"
+    ],
+    "primary": "IntegerFile.java",
+    "demo": [
+      "Values: [12, -3, 0, 7]"
+    ],
+    "starterDemo": [
+      "Values: []"
+    ],
+    "firstFailure": "sample",
+    "checkLabel": "Checks passed.",
+    "legacy": false,
+    "input": ""
+  },
+  "Archive-Dog-Birthdays": {
+    "files": [
+      "Main.java",
+      "Dog.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "Dog.java",
+    "demo": [
+      "Dog: Fido (6)"
+    ],
+    "starterDemo": [
+      "Dog: Fido (5)"
+    ],
+    "firstFailure": "sample",
+    "checkLabel": "Checks passed.",
+    "legacy": false,
+    "input": ""
+  },
+  "Archive-Fictional-Accounts": {
+    "files": [
+      "Main.java",
+      "Directory.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "Directory.java",
+    "demo": [
+      "Alias: Luna"
+    ],
+    "starterDemo": [
+      "Alias: missing"
+    ],
+    "firstFailure": "sample",
+    "checkLabel": "Checks passed.",
+    "legacy": false,
+    "input": ""
+  },
+  "Archive-Quiz-Round": {
+    "files": [
+      "Main.java",
+      "QuizRound.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "QuizRound.java",
+    "demo": [
+      "Correct: 2/3"
+    ],
+    "starterDemo": [
+      "Correct: 0/3"
+    ],
+    "firstFailure": "sample",
+    "checkLabel": "Checks passed.",
+    "legacy": false,
+    "input": ""
+  },
+  "Archive-Quiz-Leaderboard": {
+    "files": [
+      "Main.java",
+      "Leaderboard.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "Leaderboard.java",
+    "demo": [
+      "Top: [Lee (3), Ari (3)]"
+    ],
+    "starterDemo": [
+      "Top: []"
+    ],
+    "firstFailure": "sample",
+    "checkLabel": "Checks passed.",
+    "legacy": false,
+    "input": ""
+  }
+}
