@@ -1,38 +1,64 @@
-public class Timer implements Runnable {
-    // Instance variables
-    private Thread t;
-    private int time;
-    private boolean running;
+public final class Timer implements Runnable, AutoCloseable {
+    private final Thread worker = new Thread(this, "maze-countdown");
+    private final long tickMillis;
+    private volatile int remaining;
 
-    // Constructor - default to 30 seconds starting time
-    // Change "time" for more or less time
     public Timer() {
-        time = 30;
-        running = true;
+        this(30, 1000);
     }
 
-    // The init method is used to begin the thread
+    Timer(int seconds, long tickMillis) {
+        if (seconds < 0 || tickMillis < 0) {
+            throw new IllegalArgumentException("Use a nonnegative countdown and delay.");
+        }
+        remaining = seconds;
+        this.tickMillis = tickMillis;
+    }
+
     public void init() {
-        t = new Thread(this);
-        t.start();
+        worker.start();
     }
 
-    // The run method contains the code we want to repeat
+    @Override
     public void run() {
-        while (running && time > 0) {
+        while (remaining > 0 && !Thread.currentThread().isInterrupted()) {
             try {
-                Thread.sleep(1000);
-                time--;
-            } catch (Exception e) {
+                Thread.sleep(tickMillis);
+            } catch (InterruptedException interrupted) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+            if (!Thread.currentThread().isInterrupted()) {
+                remaining--;
             }
         }
     }
 
     public int getTime() {
-        return time;
+        return remaining;
     }
 
     public void stop() {
-        running = false;
+        worker.interrupt();
+    }
+
+    boolean isRunning() {
+        return worker.isAlive();
+    }
+
+    @Override
+    public void close() {
+        stop();
+        boolean interrupted = false;
+        while (worker.isAlive()) {
+            try {
+                worker.join();
+            } catch (InterruptedException interruptedWhileJoining) {
+                interrupted = true;
+            }
+        }
+        if (interrupted) {
+            Thread.currentThread().interrupt();
+        }
     }
 }
