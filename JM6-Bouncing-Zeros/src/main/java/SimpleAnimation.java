@@ -1,58 +1,46 @@
-public class SimpleAnimation implements Runnable {
-    // Instance variables
+import java.util.function.Consumer;
+
+class SimpleAnimation implements Runnable {
+    private final int width;
+    private final int frames;
+    private final long pauseMillis;
+    private final Consumer<String> display;
     private int position;
-    private boolean movingRight;
-    private Thread t;
+    private int direction = 1;
 
-    // Constructor
-    public SimpleAnimation() {
-        position = 0;
-        movingRight = true;
+    SimpleAnimation(int width, int frames, long pauseMillis, Consumer<String> display) {
+        if (width < 2 || frames < 1 || pauseMillis < 0) {
+            throw new IllegalArgumentException("Use width ≥ 2, positive frames and a nonnegative pause.");
+        }
+        this.width = width;
+        this.frames = frames;
+        this.pauseMillis = pauseMillis;
+        this.display = display;
     }
 
-    // The init method is used to begin the thread
-    public void init() {
-        t = new Thread(this);
-        t.start();
-    }
-
-    // The run method contains the code we want to repeat
+    @Override
     public void run() {
-        while (true) {
-            display();
-            move();
+        for (int frame = 0; frame < frames && !Thread.currentThread().isInterrupted(); frame++) {
+            display.accept(".".repeat(position) + "0" + ".".repeat(width - position - 1));
+            if (frame + 1 == frames) {
+                return;
+            }
+            advance();
             try {
-                Thread.sleep(100); // Wait 100 milliseconds
-            } catch (Exception e) {
+                Thread.sleep(pauseMillis);
+            } catch (InterruptedException interrupted) {
+                Thread.currentThread().interrupt();
+                return;
             }
         }
     }
 
-    // Create a string with an 0 in the designated position
-    private void display() {
-        String row = "";
-        for (int i = 0; i < 20; i++) {
-            if (i == position) {
-                row = row + "0";
-            } else {
-                row = row + " ";
-            }
+    private void advance() {
+        if (position == width - 1) {
+            direction = -1;
+        } else if (position == 0) {
+            direction = 1;
         }
-        System.out.print("\r" + row);
-    }
-
-    // Update the position
-    private void move() {
-        if (movingRight) {
-            position++;
-            if (position == 19) {
-                movingRight = false;
-            }
-        } else {
-            position--;
-            if (position == 0) {
-                movingRight = true;
-            }
-        }
+        position += direction;
     }
 }

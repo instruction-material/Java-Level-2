@@ -1,33 +1,30 @@
-import java.util.Map;
-import java.util.*;
+import java.util.function.Consumer;
 
-public class AnimalPlayer implements Runnable {
-    // Instance variables
-    private String sound;
-    private int interval;
-    private Thread t;
+class AnimalPlayer implements Runnable {
+    private final String sound;
+    private final int delayMillis;
+    private final Consumer<String> record;
 
-    // Constructor
-    public AnimalPlayer(String s, int i) {
-        sound = s;
-        interval = i;
+    AnimalPlayer(String sound, int delayMillis, Consumer<String> record) {
+        this.sound = sound;
+        this.delayMillis = delayMillis;
+        this.record = record;
     }
 
-    // The init method is used to begin the thread
-    public void init() {
-        t = new Thread(this);
-        t.start();
-    }
-
-    // The run method contains the code we want to repeat
+    @Override
     public void run() {
-        while (true) {
-            System.out.println(sound);
-
-            try {
-                Thread.sleep(interval);
-            } catch (Exception e) {
-            }
+        if (Thread.currentThread().isInterrupted()) {
+            return;
+        }
+        record.accept(sound);
+        try {
+            Thread.sleep(delayMillis);
+        } catch (InterruptedException interrupted) {
+            Thread.currentThread().interrupt();
+            return;
+        }
+        if (!Thread.currentThread().isInterrupted()) {
+            record.accept(sound);
         }
     }
 }

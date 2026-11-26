@@ -1,45 +1,58 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Scanner;
 
 class Main {
-    public static void main(String[] args) {
+    private static final Map<String, String> SOUNDS = Map.of(
+        "cow", "moo", "pig", "oink", "sheep", "baa", "chicken", "baawk",
+        "frog", "ribbit", "dog", "bark", "cat", "meow"
+    );
 
-        // Set up map to match the animals to their sounds
-        Map<String, String> animalSounds = new HashMap<>();
-        animalSounds.put("cow", "moo");
-        animalSounds.put("pig", "oink");
-        animalSounds.put("sheep", "bahhh");
-        animalSounds.put("chicken", "baawk");
-        animalSounds.put("frog", "ribbit");
-        animalSounds.put("dog", "bark");
-        animalSounds.put("cat", "meow");
-
-        // Set up an ArrayList to store animal players
-        ArrayList<AnimalPlayer> animals = new ArrayList<>();
-
-        // Get info on animals and frequency from the user and store in ArrayList
-        for (int i = 0; i < 3; i++) {
-            Scanner in = new Scanner(System.in);
-
-            System.out.print(
-                "What animal do you want to add to the orchestra? (Enter "
-                + "cow, pig, sheep, chicken, frog, dog or cat)");
-            String animal = in.nextLine();
-
-            System.out.print("How often should " + animal +
-                             " speak? (Enter time in seconds) ");
-            Double seconds = in.nextDouble();
-
-            int interval =
-                (int)(seconds *
-                      1000); // convert time in seconds to milliseconds
-            AnimalPlayer a1 =
-                new AnimalPlayer(animalSounds.get(animal), interval);
-            animals.add(a1);
+    public static void main(String[] args) throws InterruptedException {
+        var names = new ArrayList<String>();
+        var recordings = new ArrayList<List<String>>();
+        var workers = new ArrayList<Thread>();
+        try (var input = new Scanner(System.in)) {
+            for (int slot = 0; slot < 3; slot++) {
+                if (!input.hasNextLine()) {
+                    System.out.println("Enter three animal and delay lines.");
+                    return;
+                }
+                String[] parts = input.nextLine().strip().toLowerCase(Locale.ROOT).split("\s+");
+                if (parts.length != 2 || !SOUNDS.containsKey(parts[0])) {
+                    System.out.println("Use a known animal and one delay.");
+                    return;
+                }
+                int delay;
+                try {
+                    delay = Integer.parseInt(parts[1]);
+                } catch (NumberFormatException malformed) {
+                    System.out.println("Use a whole delay from 0 to 1000.");
+                    return;
+                }
+                if (delay < 0 || delay > 1000) {
+                    System.out.println("Use a whole delay from 0 to 1000.");
+                    return;
+                }
+                var recording = new ArrayList<String>();
+                names.add(parts[0]);
+                recordings.add(recording);
+                workers.add(new Thread(new AnimalPlayer(SOUNDS.get(parts[0]), delay, recording::add)));
+            }
         }
-
-        // Program each player to start
-        for (int i = 0; i < animals.size(); i++) {
-            animals.get(i).init();
+        workers.forEach(Thread::start);
+        try {
+            for (Thread worker : workers) {
+                worker.join();
+            }
+        } catch (InterruptedException interrupted) {
+            workers.forEach(Thread::interrupt);
+            throw interrupted;
+        }
+        for (int index = 0; index < names.size(); index++) {
+            System.out.println(names.get(index) + ": " + recordings.get(index));
         }
     }
 }

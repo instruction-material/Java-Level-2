@@ -1,15 +1,29 @@
-import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
-public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
+class Main {
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("First job: " + launch(true));
+        System.out.println("Second job: " + launch(false));
     }
 
-    public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+    private static String launch(boolean shouldRelease) throws InterruptedException {
+        var ready = new CountDownLatch(1);
+        var release = new CountDownLatch(1);
+        var job = new GateWorker(ready, release, 5000);
+        var thread = new Thread(job);
+        thread.start();
+        try {
+            ready.await();
+            if (shouldRelease) {
+                release.countDown();
+            } else {
+                thread.interrupt();
+            }
+            thread.join();
+            return job.outcome();
+        } catch (InterruptedException interrupted) {
+            thread.interrupt();
+            throw interrupted;
+        }
     }
 }

@@ -1,14 +1,17 @@
-# JM6 Threading & Error Handling supplemental 2
+# Weather Batch Report
 
-Course: Java Level 2
-Module: JM6 Threading & Error Handling supplemental 2
+Summarize two sets of fictional temperature readings. Give each set to a separate worker. Copy the input when constructing a worker so a later edit to the original array cannot affect the report.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. For a nonempty batch, initialize the minimum and maximum from its first reading. Scan the remaining readings, then publish one summary string.
+2. Return `No readings.` for an empty batch. Use the same result format for one reading and for negative readings.
+3. Main starts both workers and waits with join before reading either result. The sample prints `Hill: min -3, max 5` and `Lake: min 7, max 7`. Predict which result prints first even if the other worker finishes first.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter compiles. Its method checks pass after the missing behavior is implemented.
