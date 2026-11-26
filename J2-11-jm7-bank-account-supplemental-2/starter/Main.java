@@ -1,15 +1,10 @@
-import java.util.List;
-
-public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
+class Main {
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        var bank = new BankSystem();
+        bank.open("DEMO-A", 100);
+        bank.open("DEMO-B", 50);
+        System.out.println("Moved: " + Transfers.move(bank.account("DEMO-A"), bank.account("DEMO-B"), 30));
+        System.out.println("Overdraw accepted: " + Transfers.move(bank.account("DEMO-A"), bank.account("DEMO-B"), 90));
+        System.out.println("Balances: " + bank.snapshot());
     }
 }

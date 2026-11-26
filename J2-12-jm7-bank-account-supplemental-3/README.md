@@ -1,14 +1,17 @@
-# JM7 Bank Account supplemental 3
+# Spending Categories
 
-Course: Java Level 2
-Module: JM7 Bank Account supplemental 3
+Group fictional charges by category and produce an alphabetically ordered spending summary. Keep the category totals in integer cents.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Trim surrounding spaces from category names. Reject a blank name, a nonpositive charge, or a total that would overflow.
+2. Add each valid charge to its category. A rejected charge leaves the current totals unchanged. Return a copy for each report.
+3. Record supplies at 175 cents and again at 25 cents, then travel at 50 cents. The completed report is `Summary: {supplies=200, travel=50}`. Compare a snapshot before and after another valid charge.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter runs with unfinished behavior. The method checks identify what still needs to be implemented.

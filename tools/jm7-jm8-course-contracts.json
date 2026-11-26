@@ -1,0 +1,246 @@
+{
+  "JM7-Bank-Account": {
+    "files": [
+      "Main.java",
+      "BankAccount.java",
+      "BankSystem.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "BankAccount.java",
+    "demo": [
+      "Deposit accepted: true",
+      "Overdraft accepted: false",
+      "Withdrawal accepted: true",
+      "DEMO-A: 250 cents",
+      "DEMO-B: 50 cents"
+    ],
+    "starterDemo": [
+      "Deposit accepted: false",
+      "Overdraft accepted: false",
+      "Withdrawal accepted: true",
+      "DEMO-A: 175 cents",
+      "DEMO-B: 50 cents"
+    ],
+    "firstFailure": "add exact cents",
+    "checkLabel": "Fictional bank checks passed",
+    "legacy": true,
+    "input": ""
+  },
+  "JM7-Calculator": {
+    "files": [
+      "Main.java",
+      "Calculator.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "Calculator.java",
+    "demo": [
+      "Sum: 12.0",
+      "5!: 120",
+      "Divide by zero."
+    ],
+    "starterDemo": [
+      "Sum: 12.0",
+      "5!: 1",
+      "Divide by zero."
+    ],
+    "firstFailure": "factorial includes every factor",
+    "checkLabel": "Calculator checks passed",
+    "legacy": true,
+    "input": ""
+  },
+  "J2-11-jm7-bank-account-supplemental-2": {
+    "files": [
+      "Main.java",
+      "BankAccount.java",
+      "BankSystem.java",
+      "Transfers.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "Transfers.java",
+    "demo": [
+      "Moved: true",
+      "Overdraw accepted: false",
+      "Balances: {DEMO-A=70, DEMO-B=80}"
+    ],
+    "starterDemo": [
+      "Moved: false",
+      "Overdraw accepted: false",
+      "Balances: {DEMO-A=100, DEMO-B=50}"
+    ],
+    "firstFailure": "move valid cents",
+    "checkLabel": "Transfer checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-12-jm7-bank-account-supplemental-3": {
+    "files": [
+      "Main.java",
+      "Spending.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "Spending.java",
+    "demo": [
+      "Summary: {supplies=200, travel=50}"
+    ],
+    "starterDemo": [
+      "Summary: {}"
+    ],
+    "firstFailure": "record a charge",
+    "checkLabel": "Spending checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "JM8-Writing-to-a-File": {
+    "files": [
+      "Main.java",
+      "FileLines.java",
+      "WorkbookFolder.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "FileLines.java",
+    "demo": [
+      "After append: [A, Café, End]",
+      "After replace: [New]"
+    ],
+    "starterDemo": [
+      "After append: [A, Café]",
+      "After replace: [New]"
+    ],
+    "firstFailure": "retain existing line when appending",
+    "checkLabel": "File writing checks passed",
+    "legacy": true,
+    "input": ""
+  },
+  "JM8-Project-1-Crazy-Name-Tags-Printer": {
+    "files": [
+      "Main.java",
+      "NameTags.java",
+      "WorkbookFolder.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "NameTags.java",
+    "demo": [
+      "Tags: [ZOË, Zë, ëoZ]"
+    ],
+    "starterDemo": [
+      "Tags: [ZOË, , ëoZ]"
+    ],
+    "firstFailure": "three label transformations",
+    "checkLabel": "Name tag checks passed",
+    "legacy": true,
+    "input": ""
+  },
+  "JM8-Reading-from-a-File": {
+    "files": [
+      "Main.java",
+      "NumberFile.java",
+      "WorkbookFolder.java",
+      "ContractTests.java",
+      "README.md",
+      "numbers.txt"
+    ],
+    "primary": "NumberFile.java",
+    "demo": [
+      "Total: 15"
+    ],
+    "starterDemo": [
+      "Total: 0"
+    ],
+    "firstFailure": "sum signed rows",
+    "checkLabel": "File reading checks passed",
+    "legacy": true,
+    "input": ""
+  },
+  "JM8-Project-2-File-IO-and-Maps": {
+    "files": [
+      "Main.java",
+      "PairFile.java",
+      "WorkbookFolder.java",
+      "ContractTests.java",
+      "README.md",
+      "input.txt"
+    ],
+    "primary": "PairFile.java",
+    "demo": [
+      "Pairs: {pen=blue, folder=green}"
+    ],
+    "starterDemo": [
+      "Pairs: {}"
+    ],
+    "firstFailure": "pair alternate lines in order",
+    "checkLabel": "Pair file checks passed",
+    "legacy": true,
+    "input": ""
+  },
+  "JM8-Supplemental-Project-Bank-Account": {
+    "files": [
+      "Main.java",
+      "BankAccount.java",
+      "BankSystem.java",
+      "BalanceFile.java",
+      "WorkbookFolder.java",
+      "ContractTests.java",
+      "README.md",
+      "accounts.txt"
+    ],
+    "primary": "BalanceFile.java",
+    "demo": [
+      "Reopened: {DEMO-A=275, DEMO-B=50}"
+    ],
+    "starterDemo": [
+      "Reopened: {}"
+    ],
+    "firstFailure": "reopen exact balances",
+    "checkLabel": "Balance snapshot checks passed",
+    "legacy": true,
+    "input": ""
+  },
+  "J2-13-jm8-file-i-o-supplemental-2": {
+    "files": [
+      "Main.java",
+      "JournalCounts.java",
+      "WorkbookFolder.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "JournalCounts.java",
+    "demo": [
+      "Counts: {cedar=2, fern=1}"
+    ],
+    "starterDemo": [
+      "Counts: {}"
+    ],
+    "firstFailure": "combine repeated journal entries",
+    "checkLabel": "Journal checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-14-jm8-file-i-o-supplemental-3": {
+    "files": [
+      "Main.java",
+      "SnapshotDiff.java",
+      "WorkbookFolder.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "SnapshotDiff.java",
+    "demo": [
+      "Added: [Workshop]",
+      "Removed: [Storage]"
+    ],
+    "starterDemo": [
+      "Added: [Studio, Workshop]",
+      "Removed: [Storage, Studio]"
+    ],
+    "firstFailure": "sorted additions only",
+    "checkLabel": "Snapshot comparison checks passed",
+    "legacy": false,
+    "input": ""
+  }
+}

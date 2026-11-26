@@ -1,28 +1,16 @@
-import java.io.FileWriter;
-import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.List;
 
-public class Main {
-    public static void main(String[] args) {
-        String filePath = "output.txt";
-
-        try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("Hello World!");
-
-            // Solution for writing "This is line x", where x goes from 1 to 10.
-
-            writer.write("\n");
-            for (int i = 1; i < 11; i++) {
-                writer.write("This is line " + i + "\n");
-            }
-
-            System.out.println("File written successfully!");
-
-        } catch (Exception e) {
-            System.out.println(e);
+class Main {
+    public static void main(String[] args) throws Exception {
+        try (var folder = new WorkbookFolder()) {
+            var file = folder.file("rows.txt");
+            FileLines.replace(file, List.of("A", "Café"));
+            FileLines.append(file, "End");
+            System.out.println("After append: " + Files.readAllLines(file, StandardCharsets.UTF_8));
+            FileLines.replace(file, List.of("New"));
+            System.out.println("After replace: " + Files.readAllLines(file, StandardCharsets.UTF_8));
         }
-
-        // To delete a file:
-        // File f = new File (filePath);
-        // f.delete();
     }
 }

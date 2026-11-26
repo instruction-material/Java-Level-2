@@ -1,55 +1,28 @@
-public class BankAccount {
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private double balance;
+public final class BankAccount {
+    private long cents;
 
-    // Constructor to initialize a new bank account
-    public BankAccount(String firstName, String lastName, String username,
-                       String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.balance = 0.0;
+    BankAccount(long openingCents) {
+        if (openingCents < 0) throw new IllegalArgumentException("Opening balance must be nonnegative.");
+        cents = openingCents;
     }
 
-    // Get the username associated with the account
-    public String getUsername() {
-        return username;
+    public long balanceCents() {
+        return cents;
     }
 
-    // Check if the provided password matches the account password
-    public boolean checkPassword(String password) {
-        return this.password.equals(password);
+    boolean canDeposit(long amount) {
+        return amount > 0 && amount <= Long.MAX_VALUE - cents;
     }
 
-    // Deposit a specified amount into the account
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-        }
+    public boolean deposit(long amount) {
+        if (!canDeposit(amount)) return false;
+        cents += amount;
+        return true;
     }
 
-    // Withdraw a specified amount from the account
-    public boolean withdraw(double amount) {
-
-        if (amount <= this.balance) {
-            balance -= amount;
-            return true;
-        }
-
-        return false;
-    }
-
-    // Change the account password to a new password
-    public void changePassword(String newPassword) {
-        this.password = newPassword;
-    }
-
-    // Get the current balance of the account
-    public double getBalance() {
-        return balance;
+    public boolean withdraw(long amount) {
+        if (amount <= 0 || amount > cents) return false;
+        cents -= amount;
+        return true;
     }
 }

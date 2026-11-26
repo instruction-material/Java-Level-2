@@ -1,41 +1,28 @@
-public class Calculator {
-
-    // Addition
-    public double add(double a, double b) {
-        return a + b;
-    }
-
-    // Subtraction
-    public double subtract(double a, double b) {
-        return a - b;
-    }
-
-    // Multiplication
-    public double multiply(double a, double b) {
-        return a * b;
-    }
-
-    // Division
-    public double divide(double a, double b) {
-        return a / b;
-    }
-
-    // Modulus
-    public double modulus(double a, double b) {
-        return a % b;
-    }
-
-    // Factorial
-    public int factorial(int n) {
-        int result = 1;
-        for (int i = 1; i <= n; i++) {
-            result *= i;
+final class Calculator {
+    static double arithmetic(String operation, double first, double second) {
+        if (!Double.isFinite(first) || !Double.isFinite(second)) {
+            throw new IllegalArgumentException("Use finite operands.");
         }
+        if ((operation.equals("divide") || operation.equals("remainder")) && second == 0) {
+            throw new IllegalArgumentException("Divide by zero.");
+        }
+        double result = switch (operation) {
+            case "add" -> first + second;
+            case "subtract" -> first - second;
+            case "multiply" -> first * second;
+            case "divide" -> first / second;
+            case "remainder" -> first % second;
+            case "power" -> Math.pow(first, second);
+            default -> throw new IllegalArgumentException("Unknown operation.");
+        };
+        if (!Double.isFinite(result)) throw new IllegalArgumentException("Result is outside the supported range.");
         return result;
     }
 
-    // Exponentiation
-    public double exponent(double base, double exponent) {
-        return Math.pow(base, exponent);
+    static long factorial(int whole) {
+        if (whole < 0 || whole > 20) throw new IllegalArgumentException("Use a whole number from 0 to 20.");
+        long product = 1;
+        for (int factor = 2; factor <= whole; factor++) product *= factor;
+        return product;
     }
 }

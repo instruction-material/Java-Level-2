@@ -1,14 +1,17 @@
-# JM8 File I/O supplemental 2
+# Reading Journal Counts
 
-Course: Java Level 2
-Module: JM8 File I/O supplemental 2
+Count repeated entries in a fictional reading journal. An entry occupies a whole line. Empty lines are ignored.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Trim each UTF-8 row and convert it to lowercase with Locale.ROOT. Leave spaces inside an entry intact.
+2. Increment the count when an entry is repeated. Return an alphabetically ordered report. For Cedar, Fern, a blank row, and another cedar, the result is `Counts: {cedar=2, fern=1}`.
+3. Verify that an empty journal gives an empty report. Compare a missing file with an empty file.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter runs with unfinished behavior. The method checks identify what still needs to be implemented.

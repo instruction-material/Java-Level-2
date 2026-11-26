@@ -1,73 +1,28 @@
-public class BankAccount {
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private double balance;
+public final class BankAccount {
+    private long cents;
 
-    // Constructor to initialize a new bank account
-    public BankAccount(String firstName, String lastName, String username,
-                       String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.balance = 0.0;
+    BankAccount(long openingCents) {
+        if (openingCents < 0) throw new IllegalArgumentException("Opening balance must be nonnegative.");
+        cents = openingCents;
     }
 
-    // ADDED
-    // Additional constructor to initialize from a line in a file
-    public BankAccount(String line) {
-        String[] details = line.split(",");
-        this.firstName = details[0];
-        this.lastName = details[1];
-        this.username = details[2];
-        this.password = details[3];
-        this.balance = Double.parseDouble(details[4]);
+    public long balanceCents() {
+        return cents;
     }
 
-    // ADDED
-    // Convert the account details to a string for saving to a file
-    public String toFileString() {
-        return firstName + "," + lastName + "," + username + "," + password +
-            "," + balance;
+    boolean canDeposit(long amount) {
+        return amount > 0 && amount <= Long.MAX_VALUE - cents;
     }
 
-    // Get the username associated with the account
-    public String getUsername() {
-        return username;
+    public boolean deposit(long amount) {
+        if (!canDeposit(amount)) return false;
+        cents += amount;
+        return true;
     }
 
-    // Check if the provided password matches the account password
-    public boolean checkPassword(String password) {
-        return this.password.equals(password);
-    }
-
-    // Deposit a specified amount into the account
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-        }
-    }
-
-    // Withdraw a specified amount from the account
-    public boolean withdraw(double amount) {
-
-        if (amount <= this.balance) {
-            balance -= amount;
-            return true;
-        }
-
-        return false;
-    }
-
-    // Change the account password to a new password
-    public void changePassword(String newPassword) {
-        this.password = newPassword;
-    }
-
-    // Get the current balance of the account
-    public double getBalance() {
-        return balance;
+    public boolean withdraw(long amount) {
+        if (amount <= 0 || amount > cents) return false;
+        cents -= amount;
+        return true;
     }
 }

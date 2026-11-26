@@ -1,32 +1,22 @@
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class BankSystem {
-    private HashMap<String, BankAccount> accounts;
+public final class BankSystem {
+    private final Map<String, BankAccount> accounts = new TreeMap<>();
 
-    // Constructor to initialize the bank system
-    public BankSystem() {
-        accounts = new HashMap<>();
+    public boolean open(String id, long openingCents) {
+        if (id == null || !id.matches("DEMO-[A-Z0-9]+") || openingCents < 0) return false;
+        return accounts.putIfAbsent(id, new BankAccount(openingCents)) == null;
     }
 
-    // Check if a username already exists
-    public boolean usernameExists(String username) {
-        return accounts.containsKey(username);
+    public BankAccount account(String id) {
+        return id == null ? null : accounts.get(id);
     }
 
-    // Register a new account with the given details
-    public void register(String firstName, String lastName, String username,
-                         String password) {
-        accounts.put(username,
-                     new BankAccount(firstName, lastName, username, password));
-    }
-
-    // Login with the provided username and password
-    public BankAccount login(String username, String password) {
-        BankAccount account = accounts.get(username);
-        if (account != null && account.checkPassword(password)) {
-            return account; // Login successful
-        } else {
-            return null; // Login failed
-        }
+    public Map<String, Long> snapshot() {
+        var balances = new TreeMap<String, Long>();
+        accounts.forEach((id, account) -> balances.put(id, account.balanceCents()));
+        return Collections.unmodifiableMap(balances);
     }
 }

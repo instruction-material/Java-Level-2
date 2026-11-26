@@ -1,4 +1,3 @@
-anakin,skywalker,skywalker,123,100.0
-bucky,barnes,bbarnes,123,201.0
-,l,juni,123,100.0
-steve,rogers,srogers,321,10050.0
+BALANCES-1
+DEMO-A,250
+DEMO-B,50

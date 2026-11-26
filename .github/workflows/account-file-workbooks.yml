@@ -1,0 +1,23 @@
+name: Java Level 2 bank account and file workbooks
+on:
+  push:
+    paths:
+      - "JM7-*/**"
+      - "JM8-*/**"
+      - "J2-1[1-4]-jm*-supplemental-*/**"
+      - ".github/workflows/account-file-workbooks.yml"
+      - "tools/jm7-jm8-course-contracts.json"
+      - "tools/verify-jm7-jm8-workbooks.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: ./verify-course-source.sh
+      - run: JAVA_HOME="$JAVA_HOME_21_X64" python3 tools/verify-jm7-jm8-workbooks.py
