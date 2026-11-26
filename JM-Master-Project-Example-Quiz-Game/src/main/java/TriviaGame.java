@@ -1,115 +1,129 @@
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
-/* This project stores the question bank as a map where keys are categories and values are an ArrayList of Question objects for that category. There are many different ways to design a Triva Game project, please encourage your student to brainstorm and talk through their design ideas. */
+public final class TriviaGame {
+    private static final Path QUESTIONS = Path.of("Questions.txt");
+    private static final Path SCORES = Path.of("highscores.txt");
 
-public class TriviaGame {
-    private Map<String, ArrayList<Question>> questionBank;
-    private int score;
-
-    public TriviaGame() {
-        questionBank = new HashMap<>();
-        score = 0;
-    }
-
-    private void loadQuestionsFromFile() {
-        try {
-            File myFile = new File("Questions.txt");
-            Scanner myReader = new Scanner(myFile);
-            while (myReader.hasNextLine()) {
-                String category = myReader.nextLine();
-                String questionText = myReader.nextLine();
-                ArrayList<String> options = new ArrayList<>(
-                    Arrays.asList(myReader.nextLine().split(",")));
-                String correctAnswer = myReader.nextLine();
-                Question question =
-                    new Question(questionText, options, correctAnswer);
-
-                // Add question to the appropriate category
-                if (questionBank.containsKey(category)) {
-                    ArrayList<Question> questionList =
-                        questionBank.get(category);
-                    questionList.add(question);
-                } else {
-                    ArrayList<Question> qs = new ArrayList<>();
-                    qs.add(question);
-                    questionBank.put(category, qs);
-                }
+    private static Map<String, List<Question>> loadQuestions() throws IOException {
+        List<String> lines = Files.readAllLines(QUESTIONS, StandardCharsets.UTF_8);
+        if (lines.isEmpty()) throw new IllegalArgumentException("The question file is empty.");
+        var questions = new LinkedHashMap<String, List<Question>>();
+        for (int index = 0; index < lines.size(); index += 4) {
+            if (index + 3 >= lines.size()) throw invalidQuestion(index);
+            String category = lines.get(index).strip();
+            String prompt = lines.get(index + 1).strip();
+            List<String> options = Arrays.stream(lines.get(index + 2).split(",", -1)).map(String::strip).toList();
+            String answer = lines.get(index + 3).strip();
+            if (category.isEmpty() || prompt.isEmpty() || options.size() < 2
+                || options.stream().anyMatch(String::isEmpty) || new HashSet<>(options).size() != options.size()
+                || !options.contains(answer)) {
+                throw invalidQuestion(index);
             }
-        } catch (Exception e) {
-            System.out.println("Error loading file!");
+            questions.computeIfAbsent(category, key -> new ArrayList<>()).add(new Question(prompt, options, answer));
         }
+        return questions;
     }
 
-    // Method to display questions
-    private void displayQuestion(Question question) {
-        System.out.println(question.getQuestion());
-        ArrayList<String> options = question.getOptions();
-        for (int i = 0; i < options.size(); i++) {
-            System.out.println((i + 1) + ". " + options.get(i));
-        }
+    private static IllegalArgumentException invalidQuestion(int index) {
+        return new IllegalArgumentException("Invalid question starting on line " + (index + 1) + ".");
     }
 
-    // Method to start the game
     public void startGame() {
-        loadQuestionsFromFile();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Trivia Quiz Game!");
-        System.out.println("Choose a category: " + questionBank.keySet());
-        String category = scanner.nextLine();
+        try (var input = new Scanner(System.in)) {
+            play(input, loadQuestions());
+        } catch (IOException unreadable) {
+            System.out.println("Cannot read Questions.txt.");
+        } catch (IllegalArgumentException invalid) {
+            System.out.println(invalid.getMessage());
+        }
+    }
 
-        if (!questionBank.containsKey(category)) {
-            System.out.println("Invalid category. Exiting game.");
-            return;
+    private static void play(Scanner input, Map<String, List<Question>> bank) {
+        System.out.println("Choose a category: " + bank.keySet());
+        List<Question> questions = null;
+        String category = "";
+        while (questions == null) {
+            if (!input.hasNextLine()) {
+                System.out.println("Input ended.");
+                return;
+            }
+            category = input.nextLine().strip();
+            questions = bank.get(category);
+            if (questions == null) System.out.println("Choose a listed category.");
         }
 
-        ArrayList<Question> questions = questionBank.get(category);
+        int score = 0;
         for (Question question : questions) {
-            displayQuestion(question); // Display question and options
-            System.out.print("Your answer (enter number): ");
-            int answerIndex = scanner.nextInt() - 1;
-
-            if (question.getOptions()
-                    .get(answerIndex)
-                    .equals(question.getCorrectAnswer())) {
-                System.out.println("Correct!\n");
+            System.out.println(question.getQuestion());
+            List<String> options = question.getOptions();
+            for (int index = 0; index < options.size(); index++) {
+                System.out.println((index + 1) + ". " + options.get(index));
+            }
+            int answer = readAnswer(input, options.size());
+            if (answer < 0) {
+                System.out.println("Input ended. Finish all questions to save a score.");
+                return;
+            }
+            if (options.get(answer).equals(question.getCorrectAnswer())) {
                 score++;
+                System.out.println("Correct!");
             } else {
-                System.out.println("Wrong! Correct answer is: " +
-                                   question.getCorrectAnswer() + "\n");
+                System.out.println("Correct answer: " + question.getCorrectAnswer());
             }
         }
-
-        System.out.println("Your final score: " + score + "/" +
-                           questions.size());
+        System.out.println("Your final score: " + score + "/" + questions.size());
         saveScore(score, category);
     }
 
-    // Static method to save high score to file
-    public static void saveScore(int score, String category) {
-        try (FileWriter writer = new FileWriter("highscores.txt", true)) {
-            writer.write("Category: " + category + " | Score: " + score + "\n");
-            System.out.println("Your score has been saved.");
-
-        } catch (IOException e) {
-            System.out.println("Error saving score.");
+    private static int readAnswer(Scanner input, int count) {
+        while (true) {
+            System.out.println("Enter an answer from 1 to " + count + ":");
+            if (!input.hasNextLine()) return -1;
+            String line = input.nextLine().strip();
+            try {
+                int answer = Integer.parseInt(line);
+                if (answer >= 1 && answer <= count) return answer - 1;
+            } catch (NumberFormatException malformed) {
+                System.out.println("Use a whole number.");
+            }
         }
     }
 
-    // Method to display high scores
-    public static void showHighScores() {
+    public static void saveScore(int score, String category) {
+        if (score < 0 || category == null || category.isBlank() || category.contains("\n") || category.contains("\r")) {
+            throw new IllegalArgumentException("Use a category on one line and a nonnegative score.");
+        }
         try {
-            File myFile = new File("highscores.txt");
-            Scanner reader = new Scanner(myFile);
-            String line;
-            System.out.println("\nHigh Scores:");
-            while (reader.hasNextLine()) {
-                line = reader.nextLine();
+            Files.writeString(SCORES, "Category: " + category + " | Score: " + score + "\n", StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            System.out.println("Your score has been saved.");
+        } catch (IOException failure) {
+            System.out.println("Cannot save the score.");
+        }
+    }
+
+    public static void showHighScores() {
+        try (var reader = Files.newBufferedReader(SCORES, StandardCharsets.UTF_8)) {
+            System.out.println("High Scores:");
+            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
                 System.out.println(line);
             }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("Error reading high scores.");
+        } catch (NoSuchFileException missing) {
+            System.out.println("No saved scores.");
+        } catch (IOException failure) {
+            System.out.println("Cannot read saved scores.");
         }
     }
 }

@@ -1,25 +1,23 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class Question {
-    private String question;
-    private ArrayList<String> options;
-    private String correctAnswer;
+public final class Question {
+    private final String question;
+    private final List<String> options;
+    private final String correctAnswer;
 
-    // Constructor
-    public Question(String question, ArrayList<String> options,
-                    String correctAnswer) {
+    public Question(String question, List<String> options, String correctAnswer) {
         this.question = question;
-        this.options = options;
+        this.options = List.copyOf(options);
         this.correctAnswer = correctAnswer;
     }
 
-    // Getters
     public String getQuestion() {
         return question;
     }
 
     public ArrayList<String> getOptions() {
-        return options;
+        return new ArrayList<>(options);
     }
 
     public String getCorrectAnswer() {
