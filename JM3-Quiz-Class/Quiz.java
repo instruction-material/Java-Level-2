@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Quiz {
     private int score;
     private String name;
@@ -9,21 +11,17 @@ public class Quiz {
     private static int numQuizzes;
 
     public Quiz() {
-        name = "";
-        questions = new String[5];
-        numQuizzes++;
+        this("", 0);
     }
 
     public Quiz(String n, int s) {
-        name = n;
-        score = s;
-        numQuizzes++;
+        this(n, s, new String[0]);
     }
 
     public Quiz(String n, int s, String[] q) {
         name = n;
         score = s;
-        questions = q;
+        questions = Objects.requireNonNull(q).clone();
         numQuizzes++;
     }
 
@@ -45,11 +43,14 @@ public class Quiz {
         }
     }
 
+    @Override
     public String toString() {
-        int rand = (int)(Math.random() * 5);
+        String question = questions.length == 0
+            ? "(none)"
+            : questions[(int) (Math.random() * questions.length)];
         return name + " received a grade of " + getLetterGrade() +
             " on the quiz. A random question on the quiz was: " +
-            questions[rand];
+            question;
     }
 
     public static int getNumQuizzes() {
