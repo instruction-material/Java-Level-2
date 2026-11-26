@@ -1,15 +1,13 @@
-import java.util.List;
+import java.nio.file.Path;
+import java.util.Map;
 
-public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
+class Main {
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        var reports = MazeBatch.inspect(Map.of(
+            "practice", Path.of("practice.txt"),
+            "missing", Path.of("missing.txt"),
+            "broken", Path.of("no-exit.txt")
+        ));
+        reports.forEach((label, report) -> System.out.println(label + ": " + report));
     }
 }

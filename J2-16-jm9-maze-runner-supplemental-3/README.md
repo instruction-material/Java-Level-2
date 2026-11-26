@@ -1,14 +1,17 @@
-# JM9 Maze Runner supplemental 3
+# Review a Batch of Maze Files
 
-Course: Java Level 2
-Module: JM9 Maze Runner supplemental 3
+Validate a batch of maze layouts and summarize the result for each labeled case. An error in one file leaves the other reports available.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Use the supplied map of case labels to paths. For each board, create a Maze and report its start coordinates. Catch IllegalArgumentException for that board and report the diagnostic without printing its contents.
+2. Use a TreeMap so report order is independent of input order. Keep results for missing, malformed, and ready boards in one table.
+3. Run the sample. Its first line is `broken: Maze needs one player start and one exit.`, and its last line is `practice: Ready at (1, 1)`. Change the order of the input labels and compare the result.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+In the starter, the driver runs and the method checks identify unfinished behavior.

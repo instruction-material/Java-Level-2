@@ -1,0 +1,175 @@
+{
+  "Maze-Reader": {
+    "files": [
+      "Main.java",
+      "Maze.java",
+      "ContractTests.java",
+      "README.md",
+      "easy.txt",
+      "medium.txt",
+      "hard.txt",
+      "practice.txt"
+    ],
+    "primary": "Maze.java",
+    "demo": [
+      "#####",
+      "#P E#",
+      "#####",
+      "Start: (1, 1)"
+    ],
+    "starterDemo": [
+      "#####",
+      "#P E#",
+      "#####",
+      "Start: (1, 1)"
+    ],
+    "firstFailure": "open space is passable",
+    "checkLabel": "Maze reader checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "Maze-Runner-Part-2": {
+    "files": [
+      "Main.java",
+      "Maze.java",
+      "Player.java",
+      "MazeGame.java",
+      "ContractTests.java",
+      "README.md",
+      "easy.txt",
+      "medium.txt",
+      "hard.txt",
+      "practice.txt"
+    ],
+    "primary": "MazeGame.java",
+    "demo": [
+      "#####",
+      "#P E#",
+      "#####",
+      "Enter a move (WASD), or Q to quit:",
+      "Invalid move. Try again.",
+      "#####",
+      "#P E#",
+      "#####",
+      "Enter a move (WASD), or Q to quit:",
+      "#####",
+      "# PE#",
+      "#####",
+      "Enter a move (WASD), or Q to quit:",
+      "#####",
+      "#  P#",
+      "#####",
+      "Congratulations! You've reached the exit!"
+    ],
+    "starterDemo": [
+      "#####",
+      "#P E#",
+      "#####",
+      "Enter a move (WASD), or Q to quit:",
+      "Invalid move. Try again.",
+      "#####",
+      "#P E#",
+      "#####",
+      "Enter a move (WASD), or Q to quit:",
+      "Invalid move. Try again.",
+      "#####",
+      "#P E#",
+      "#####",
+      "Enter a move (WASD), or Q to quit:",
+      "Invalid move. Try again.",
+      "#####",
+      "#P E#",
+      "#####",
+      "Enter a move (WASD), or Q to quit:",
+      "Input ended."
+    ],
+    "firstFailure": "two right moves reach the exit",
+    "checkLabel": "Untimed maze checks passed",
+    "legacy": false,
+    "input": "w\nD\n d \n"
+  },
+  "Maze-Runner-Part-3": {
+    "files": [
+      "Main.java",
+      "Maze.java",
+      "Player.java",
+      "MazeGame.java",
+      "Timer.java",
+      "ContractTests.java",
+      "README.md",
+      "easy.txt",
+      "medium.txt",
+      "hard.txt",
+      "practice.txt"
+    ],
+    "primary": "Timer.java",
+    "demo": [
+      "#####",
+      "#P E#",
+      "#####",
+      "Time left: 30 seconds",
+      "Enter a move (WASD), or Q to quit:",
+      "Game ended."
+    ],
+    "starterDemo": [
+      "#####",
+      "#P E#",
+      "#####",
+      "Time left: 30 seconds",
+      "Enter a move (WASD), or Q to quit:",
+      "Game ended."
+    ],
+    "firstFailure": "countdown reaches zero",
+    "checkLabel": "Timed maze checks passed",
+    "legacy": false,
+    "input": "q\n"
+  },
+  "J2-15-jm9-maze-runner-supplemental-2": {
+    "files": [
+      "Main.java",
+      "Maze.java",
+      "RouteReplay.java",
+      "ContractTests.java",
+      "README.md",
+      "practice.txt",
+      "commands.txt"
+    ],
+    "primary": "RouteReplay.java",
+    "demo": [
+      "Accepted: 2, rejected: 1, escaped: true"
+    ],
+    "starterDemo": [
+      "Accepted: 0, rejected: 2, escaped: false"
+    ],
+    "firstFailure": "replay stops at the exit",
+    "checkLabel": "Maze replay checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-16-jm9-maze-runner-supplemental-3": {
+    "files": [
+      "Main.java",
+      "Maze.java",
+      "MazeBatch.java",
+      "ContractTests.java",
+      "README.md",
+      "practice.txt",
+      "no-exit.txt"
+    ],
+    "primary": "MazeBatch.java",
+    "demo": [
+      "broken: Maze needs one player start and one exit.",
+      "missing: Cannot read maze file.",
+      "practice: Ready at (1, 1)"
+    ],
+    "starterDemo": [
+      "broken: Review pending.",
+      "missing: Review pending.",
+      "practice: Review pending."
+    ],
+    "firstFailure": "valid board still reported",
+    "checkLabel": "Maze batch checks passed",
+    "legacy": false,
+    "input": ""
+  }
+}

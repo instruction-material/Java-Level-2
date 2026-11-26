@@ -1,0 +1,23 @@
+name: Java Level 2 maze workbooks
+on:
+  push:
+    paths:
+      - "Maze-Reader/**"
+      - "Maze-Runner-Part-*/**"
+      - "J2-1[56]-jm9-maze-runner-supplemental-*/**"
+      - ".github/workflows/maze-workbooks.yml"
+      - "tools/jm9-course-contracts.json"
+      - "tools/verify-jm9-workbooks.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: ./verify-course-source.sh
+      - run: JAVA_HOME="$JAVA_HOME_21_X64" python3 tools/verify-jm9-workbooks.py
