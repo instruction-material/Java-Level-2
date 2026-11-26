@@ -1,15 +1,9 @@
-import java.util.List;
+import java.util.Map;
 
-public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
+class Main {
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        Map<String, Integer> offsets = Map.of("Ridge", -3, "Harbor", 4);
+        System.out.println("At 23: " + StationHours.report(23, offsets));
+        System.out.println("At 1: " + StationHours.report(1, offsets));
     }
 }

@@ -1,10 +1,34 @@
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import java.util.*;
+public final class RomanClock extends HourClock {
+    private static final String[] NUMERALS = {
+        "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"
+    };
+    private final Map<String, Integer> values = new LinkedHashMap<>();
 
-// A Roman clock is similar to a regular HourClock, except that a Roman clock always has 12 hours and uses special Roman numerals to represent the hour instead of the numbers from 1-12
+    public RomanClock() {
+        this(1);
+    }
 
-public class RomanClock {
-    // an array of the Roman numerals from 1-12
-    private String[] romanNumerals = {"I",   "II",  "III", "IV", "V",  "VI",
-                                      "VII", "IIX", "IX",  "X",  "XI", "XII"};
+    public RomanClock(int hour) {
+        super(false, hour);
+    }
+
+    String numeralForHour() {
+        // TODO: Find the symbol for the active hour.
+        return "?";
+    }
+
+    @Override
+    public void displayTime() {
+        // TODO: Replace the inherited display with the Roman symbol.
+        super.displayTime();
+    }
+
+    public Map<String, Integer> updateMap() {
+        // TODO: Build an ordered map and return a read-only snapshot.
+        return Map.of();
+    }
 }

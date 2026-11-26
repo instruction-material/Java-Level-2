@@ -1,14 +1,17 @@
-# Check-In #2 supplemental 2
+# Sensor Reading Recovery
 
-Course: Java Level 2
-Module: Check-In #2 supplemental 2
+Maintain one latest integer reading per named sensor. A command supplies a sensor name and one reading. Use the supplied valid, malformed and corrected commands to check how a failed parse affects the map.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Split one command into a name and a number. Reject blank names, missing readings, and extra fields.
+2. Parse the number before writing to the map. Catch NumberFormatException at that boundary. A rejected attempt leaves the last good reading in place.
+3. Apply `east 7`, `east broken`, and `east -2`. The driver shows `After rejection: 7` and `After retry: -2`. Confirm that changing east does not change a separate west reading.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter runs and reports the unfinished behavior. Use the method checks to confirm the result after implementing it.

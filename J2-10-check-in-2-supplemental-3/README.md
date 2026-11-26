@@ -1,14 +1,17 @@
-# Check-In #2 supplemental 3
+# Station Hour Reports
 
-Course: Java Level 2
-Module: Check-In #2 supplemental 3
+Convert one shared hour to each station’s local hour using a table of fictional integer offsets. Work in a 24-hour range from 0 to 23. Use the same rule for positive and negative offsets.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Validate that the shared hour is within range before creating a report. An out-of-range hour throws IllegalArgumentException.
+2. Use `Math.floorMod((long) sharedHour + offset, 24)` to wrap an adjusted hour into the supported range. A TreeMap puts the station names in order. Preserve the supplied offsets so the next report starts from the same table.
+3. For Harbor with offset +4 and Ridge with offset −3, hour 23 produces `At 23: {Harbor=3, Ridge=20}`. Hour 1 produces `At 1: {Harbor=5, Ridge=22}`. Explain both crossings of midnight.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter runs and reports the unfinished behavior. Use the method checks to confirm the result after implementing it.

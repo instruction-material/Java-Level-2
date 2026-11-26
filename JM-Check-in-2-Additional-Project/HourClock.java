@@ -1,69 +1,42 @@
-import java.util.*;
-
-public class HourClock implements Runnable {
-
-    // instance variables
+public class HourClock {
+    private final boolean twentyFourHour;
     private int hour;
-    private boolean isMilitary;
-    Thread t;
 
-    // Constructor
-    public HourClock(boolean m) {
-        isMilitary = m;
-        hour = 1;
+    public HourClock(boolean twentyFourHour) {
+        this(twentyFourHour, 1);
     }
 
-    // thread start
-    public void start() {
-        t = new Thread(this);
-        t.start();
+    public HourClock(boolean twentyFourHour, int hour) {
+        this.twentyFourHour = twentyFourHour;
+        setHour(hour);
     }
 
-    // thread run
-    public void run() {
-        while (true) {
-            displayTime();
-            tick();
-
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-            }
+    public final void setHour(int hour) {
+        int minimum = twentyFourHour ? 0 : 1;
+        int maximum = twentyFourHour ? 23 : 12;
+        if (hour < minimum || hour > maximum) {
+            throw new IllegalArgumentException("Hour outside clock range.");
         }
+        this.hour = hour;
     }
 
-    // tick method to increment the clock
-    public void tick() {
-        if (isMilitary) {
-            if (hour >= 23) {
-                hour = 0;
-            } else {
-                hour++;
-            }
-        } else {
-            if (hour == 12) {
-                hour = 1;
-            } else {
-                hour++;
-            }
-        }
-    }
-
-    // getters
-    public int getHour() {
+    public final int getHour() {
         return hour;
     }
 
-    public boolean getIsMilitary() {
-        return isMilitary;
+    public final boolean getIsMilitary() {
+        return twentyFourHour;
     }
 
-    // setters
-    public void setHour(int h) {
-        hour = h;
+    public void tick() {
+        if (twentyFourHour) {
+            hour = (hour + 1) % 24;
+        } else {
+            hour = hour % 12 + 1;
+        }
     }
-    // display the time
+
     public void displayTime() {
-        System.out.println("Time: " + hour + ":00");
+        System.out.println("Time: " + getHour() + ":00");
     }
 }

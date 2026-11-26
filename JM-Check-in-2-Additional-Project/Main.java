@@ -1,9 +1,13 @@
 class Main {
     public static void main(String[] args) {
-        HourClock h1 = new HourClock(true);
-        MinuteClock m1 = new MinuteClock(false);
-
-        // h1.start();
-        m1.start();
+        HourClock ordinary = new MinuteClock(false, 12, 58);
+        ordinary.displayTime();
+        ordinary.tick();
+        ordinary.displayTime();
+        ordinary.tick();
+        ordinary.displayTime();
+        HourClock military = new MinuteClock(true, 23, 59);
+        military.tick();
+        military.displayTime();
     }
 }

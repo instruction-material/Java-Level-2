@@ -1,59 +1,36 @@
-public class MinuteClock extends HourClock {
-    // Instance variables
+import java.util.Locale;
+
+public final class MinuteClock extends HourClock {
     private int minute;
 
-    // Constructor
-    public MinuteClock(boolean m) {
-        super(m);
-        minute = 0;
+    public MinuteClock(boolean twentyFourHour) {
+        this(twentyFourHour, 1, 0);
     }
 
-    // Getters
+    public MinuteClock(boolean twentyFourHour, int hour, int minute) {
+        super(twentyFourHour, hour);
+        if (minute < 0 || minute > 59) {
+            throw new IllegalArgumentException("Minute outside clock range.");
+        }
+        this.minute = minute;
+    }
+
     public int getMinute() {
         return minute;
     }
 
-    // Display the time in a nice format
-    public void displayTime() {
-        if (minute < 10) {
-            System.out.println("Time: " + getHour() + ":0" + getMinute());
-        } else {
-            System.out.println("Time: " + getHour() + ":" + getMinute());
-        }
-
-        // Alternatively, introduce String.format or inline conditional statements
-        // System.out.println("Time: " + getHour() + String.format(":%02d", minute));
-        // System.out.println("Time: " + getHour() + ":" + (minute < 10 ? "0" : "") + minute);
-    }
-
-    // Increase the time by one minute. Be careful of when the minute and hour need to wrap back around.
+    @Override
     public void tick() {
-        // We have not taught calling super versions of functions. If your student is advanced feel free to show them how we could use super.tick() to simplify the code; if not you can use the second implementation
         if (minute == 59) {
             minute = 0;
             super.tick();
         } else {
             minute++;
         }
+    }
 
-        /* Second implementation
-    if (minute >= 59) {
-      // Set minute back to 0
-      minute = 0;
-      // Tick the hour (essentially just the code from super.tick())
-      if (getIsMilitary()) {
-        setHour((getHour() + 1) % 24);
-      } else {
-        if (getHour() >= 12) {
-          setHour(1);
-        } else {
-          setHour(getHour()+1);
-        }
-      }
-    }
-    else {
-      minute++;
-    }
-    */
+    @Override
+    public void displayTime() {
+        System.out.printf(Locale.ROOT, "Time: %d:%02d%n", getHour(), minute);
     }
 }
