@@ -1,67 +1,44 @@
-import java.util.*;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 class Main {
+    static Map<Integer, Integer> countLetters(String sentence) {
+        Map<Integer, Integer> frequencies = new TreeMap<>();
+        sentence.codePoints()
+            .filter(Character::isLetter)
+            .map(Character::toLowerCase)
+            .forEach(letter -> frequencies.merge(letter, 1, Integer::sum));
+        return frequencies;
+    }
+
+    private static String textFor(int letter) {
+        return new String(Character.toChars(letter));
+    }
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\nType in a sentence: ");
-        String sentence = scanner.nextLine();
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Enter a sentence:");
+            if (!scanner.hasNextLine()) {
+                System.out.println("No input received.");
+                return;
+            }
 
-        Map<Character, Integer> frequencies = new HashMap<>();
+            Map<Integer, Integer> frequencies = countLetters(scanner.nextLine());
+            if (frequencies.isEmpty()) {
+                System.out.println("No letters found.");
+                return;
+            }
 
-        //fill the map
-        for (int i = 0; i < sentence.length(); i++) {
-            char letter = sentence.charAt(i);
-            letter = Character.toLowerCase(letter);
-            if (letter != ' ') {
-                int frequency = 1;
-                if (frequencies.containsKey(letter)) {
-                    frequency += frequencies.get(letter);
+            Map.Entry<Integer, Integer> mostFrequent = null;
+            for (var entry : frequencies.entrySet()) {
+                System.out.println(textFor(entry.getKey()) + ": " + entry.getValue());
+                if (mostFrequent == null || entry.getValue() > mostFrequent.getValue()) {
+                    mostFrequent = entry;
                 }
-                frequencies.put(letter, frequency);
             }
+            System.out.println("Most frequent: " + textFor(mostFrequent.getKey())
+                + " (" + mostFrequent.getValue() + ")");
         }
-
-        //alternative 1 fill the map
-        //getOrDefault
-        /*
-    for(int i = 0; i < sentence.length(); i++){
-      char letter = sentence.charAt(i);
-      letter = Character.toLowerCase(letter);
-      if(letter != ' '){
-        frequencies.put(letter,frequencies.getOrDefault(letter,0)+1);
-      }
-    }
-    */
-
-        //alternative 2 fill the map
-        //putIfAbsent
-        /*
-    for(int i = 0; i < sentence.length(); i++){
-      char letter = sentence.charAt(i);
-      letter = Character.toLowerCase(letter);
-      if(letter != ' '){
-        frequencies.putIfAbsent(letter,0);
-        frequencies.put(letter,frequencies.get(letter)+1);
-      }
-    }
-    */
-
-        //print all the letters
-        System.out.println("\nLetters: ");
-        for (char letter : frequencies.keySet()) {
-            System.out.print(letter + ": ");
-            System.out.print(frequencies.get(letter) + "\n");
-        }
-
-        //find the maximum letter
-        char maximumLetter = frequencies.keySet().iterator().next();
-        for (char letter : frequencies.keySet()) {
-            if (frequencies.get(letter) > frequencies.get(maximumLetter)) {
-                maximumLetter = letter;
-            }
-        }
-        System.out.print("\nThe most frequent letter is: " + maximumLetter +
-                         "\nWhich appears a whopping " +
-                         frequencies.get(maximumLetter) + " times!");
     }
 }

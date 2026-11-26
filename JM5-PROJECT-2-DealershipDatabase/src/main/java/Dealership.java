@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Dealership {
-    private Map<String, Car> inventory = new HashMap<>();
+    private final Map<String, Car> inventory = new LinkedHashMap<>();
 
     public void addCar(String vin, Car car) {
         inventory.put(vin, car);
@@ -29,13 +29,17 @@ public class Dealership {
 
     public void displayCar(String vin) {
         Car car = inventory.get(vin);
+        if (car == null) {
+            System.out.println("No car found for VIN " + vin + ".");
+            return;
+        }
         car.displayDetails();
     }
 
     public void displayInventory() {
         System.out.println("\nCar Inventory:");
         for (Map.Entry<String, Car> entry : inventory.entrySet()) {
-            inventory.get(entry.getKey()).displayDetails();
+            entry.getValue().displayDetails();
             System.out.println();
         }
     }
