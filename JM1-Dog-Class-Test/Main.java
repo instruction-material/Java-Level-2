@@ -10,7 +10,7 @@ class Main {
         fido.setAge(5);
         System.out.println("Now Fido is " + fido.getAge() + " years old.");
 
-        // This doesn't work:
+        // Without an override, this prints the default object representation.
         System.out.println(fido);
 
         // Using the toString() method

@@ -3,7 +3,7 @@ class Main {
 
         // Create two instances of Employee class
         Employee jacky = new Employee("Jacky", "Intern", 1, 556614);
-        Employee tina = new Employee("Tina", "Manager", 3, 076544);
+        Employee tina = new Employee("Tina", "Manager", 3, 76544);
 
         // Using the toString() method to print both employees information
         System.out.println(jacky);
@@ -17,7 +17,7 @@ class Main {
         jacky.setPosition("Engineer");
         // Update tina
         System.out.println("Tina worked another year!");
-        jacky.setYearsWorked(4);
+        tina.setYearsWorked(4);
         System.out.println("Tina got a promotion");
         tina.setPosition("Vice President");
 

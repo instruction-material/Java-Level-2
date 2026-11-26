@@ -1,0 +1,22 @@
+name: JM1 object workbooks
+on:
+  push:
+    paths:
+      - "JM1-*/**"
+      - ".gitattributes"
+      - ".github/workflows/jm1-object-workbooks.yml"
+      - "tools/verify-jm1-workbooks.py"
+      - "verify-course-source.sh"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: ./verify-course-source.sh
+      - run: JAVA_HOME="$JAVA_HOME_21_X64" python3 tools/verify-jm1-workbooks.py
