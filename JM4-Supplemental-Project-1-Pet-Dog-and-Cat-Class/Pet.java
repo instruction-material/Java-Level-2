@@ -10,6 +10,6 @@ public class Pet {
     }
 
     public String toString() {
-        return "Name: " + name + ", Weight: " + weight + ", + Age: " + age;
+        return "Name: " + name + ", Weight: " + weight + ", Age: " + age;
     }
 }

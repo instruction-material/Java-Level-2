@@ -1,14 +1,17 @@
-# JM4 Subclasses & Inheritance supplemental 3
+# Delivery Fees and Address Composition
 
-Course: Java Level 2
-Module: JM4 Subclasses & Inheritance supplemental 3
+A priority delivery is a kind of delivery with a different fee. A delivery has a destination address. Keep the address as a field rather than making it a parent class.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Trace how both delivery types send the address to Delivery. The receipt uses the destination and calls `feeCents()` on the actual delivery object.
+2. Complete PriorityDelivery so it adds a fixed surcharge of 300 cents to the base fee. Keep prices in integer cents.
+3. Predict what happens when two delivery types share one Address and the driver treats them both as Delivery.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download its ZIP, and extract the folder. Use Java 21 in that folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter compiles. Its checks show which behavior still needs to be implemented.

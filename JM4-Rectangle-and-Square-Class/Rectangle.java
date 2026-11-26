@@ -1,25 +1,27 @@
 public class Rectangle {
-    private int width;
-    private int length;
-    private String color;
+    private final int width;
+    private final int length;
+    private final String color;
 
     public Rectangle(int w, int l, String c) {
+        if (w <= 0 || l <= 0) {
+            throw new IllegalArgumentException("Dimensions must be positive");
+        }
         width = w;
         length = l;
         color = c;
     }
 
     public Rectangle(int w, int l) {
-        width = w;
-        length = l;
+        this(w, l, "unpainted");
     }
 
     public int getArea() {
-        return width * length;
+        return Math.multiplyExact(width, length);
     }
 
     public int getPerimeter() {
-        return 2 * (width + length);
+        return Math.multiplyExact(2, Math.addExact(width, length));
     }
 
     public int getWidth() {

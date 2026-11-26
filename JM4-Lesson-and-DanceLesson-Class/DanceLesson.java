@@ -13,10 +13,10 @@ public class DanceLesson extends Lesson {
     }
 
     public boolean hasSameDifficulty(DanceLesson d) {
-        return difficulty == d.difficulty;
+        return d != null && difficulty == d.difficulty;
     }
 
     public boolean easierThan(DanceLesson d) {
-        return difficulty < d.difficulty;
+        return d != null && difficulty < d.difficulty;
     }
 }

@@ -19,8 +19,8 @@ class Main {
                            + "\nHave the same illustrator:\n" +
                            cat.hasSameIllustrator(eggs));
         System.out.println("\nThe Cat in the Hat and Green Eggs and Ham "
-                           + "\nAre the same book:\n" + cat.isSameBook(eggs));
+                           + "\nAre the same illustrated edition:\n" + cat.isSameIllustratedEdition(eggs));
         System.out.println("\nThe Cat in the Hat and The Cat in the Hat "
-                           + "\nAre the same book:\n" + cat.isSameBook(cat));
+                           + "\nAre the same illustrated edition:\n" + cat.isSameIllustratedEdition(cat));
     }
 }

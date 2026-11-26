@@ -8,6 +8,9 @@ class LandVehicle extends Vehicle {
         super(make, model, year, color);
         this.numberOfWheels = numberOfWheels;
         this.fuelType = fuelType;
+        if (miles < 0 || !Double.isFinite(miles)) {
+            throw new IllegalArgumentException("Mileage must be finite and nonnegative");
+        }
         this.miles = miles;
     }
 
@@ -32,10 +35,11 @@ class LandVehicle extends Vehicle {
     }
 
     public void increaseMiles(double milesDriven) {
-        if (milesDriven > 0) {
-            this.miles += milesDriven;
+        double nextMiles = miles + milesDriven;
+        if (milesDriven > 0 && Double.isFinite(nextMiles)) {
+            this.miles = nextMiles;
         } else {
-            System.out.println("Miles driven must be a positive value.");
+            System.out.println("Miles driven must be positive and the total must remain finite.");
         }
     }
 
