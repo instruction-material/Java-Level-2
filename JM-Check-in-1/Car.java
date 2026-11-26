@@ -19,6 +19,9 @@ public class Car implements Comparable<Car> {
 
     // Create a constructor for the Car class that takes in an argument for each instance variable.
     public Car(String t, String c, int md) {
+        if (md < 0) {
+            throw new IllegalArgumentException("Mileage must be nonnegative");
+        }
         carType = t;
         color = c;
         milesDriven = md;
@@ -27,10 +30,7 @@ public class Car implements Comparable<Car> {
 
     // Create an overloaded constructor that takes in the car type and color and sets the miles driven to 0.
     public Car(String t, String c) {
-        carType = t;
-        color = c;
-        milesDriven = 0;
-        numCars++; // This is not added until the Static Variables and Methods section
+        this(t, c, 0);
     }
 
     //  In your main method, create two cars using both of your constructors. (See Main)
@@ -53,7 +53,7 @@ public class Car implements Comparable<Car> {
     // Add a drive method that increases the milesDriven by a given amount. Then in your main method, test the drive method. (See Main)
     public void drive(int m) {
         if (m >= 0) {
-            milesDriven += m;
+            milesDriven = Math.addExact(milesDriven, m);
         } else {
             System.out.println("Miles driven must be positive!");
         }
@@ -67,7 +67,7 @@ public class Car implements Comparable<Car> {
 
     // Write a method called sameMileage that takes in another Car object and returns true if both Cars have driven the same distance and false if they have driven different distances.
     public boolean sameMileage(Car other) {
-        return getMileage() == other.getMileage();
+        return other != null && getMileage() == other.getMileage();
     }
 
     /* ---------------------------- */
@@ -105,7 +105,7 @@ public class Car implements Comparable<Car> {
     }
 
     // What values does the compareTo method return? How do we choose which value to return?
-    // Ans: compareTo return 0 if the two objects are the same, a negative number (usually just -1) if the object calling the method should come in sorted order before the object that was passed into the method, and a positive number (usually just 1) if the object calling the method should come in sorted order after the object that was passed into the method.
+    // Ans: compareTo returns 0 if the two mileage values tie, a negative number (usually just -1) if the object calling the method should come in sorted order before the object that was passed into the method, and a positive number (usually just 1) if the object calling the method should come in sorted order after the object that was passed into the method.
 
     // In your main method, create three Cars, put them into an array, sort the array, and finally, print each Car in the array. (See Main)
 }

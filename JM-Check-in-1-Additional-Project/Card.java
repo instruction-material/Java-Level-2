@@ -1,10 +1,13 @@
 public class Card implements Comparable<Card> {
     // Instance variables
-    public int rank;
-    public int suit;
+    private final int rank;
+    private final int suit;
 
     // Constructor
     public Card(int r, int s) {
+        if (r < 1 || r > 13 || s < 1 || s > 4) {
+            throw new IllegalArgumentException("Rank must be 1–13 and suit 1–4");
+        }
         rank = r;
         suit = s;
     }
