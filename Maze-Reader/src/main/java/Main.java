@@ -1,8 +1,12 @@
-public class Main {
+public final class Main {
     public static void main(String[] args) {
-        // set up the specified maze
-        // change arguement to "easy.txt" or "hard.txt" to view different mazes
-        Maze maze = new Maze("medium.txt");
-        maze.print();
+        String board = args.length == 0 ? "medium.txt" : args[0];
+        try {
+            var maze = new Maze(board);
+            maze.print();
+            System.out.println("Start: (" + maze.getPlayerStartX() + ", " + maze.getPlayerStartY() + ")");
+        } catch (IllegalArgumentException invalidMaze) {
+            System.out.println(invalidMaze.getMessage());
+        }
     }
 }

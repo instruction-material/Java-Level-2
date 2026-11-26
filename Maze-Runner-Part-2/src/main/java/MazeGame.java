@@ -1,70 +1,58 @@
+import java.util.Locale;
 import java.util.Scanner;
 
-public class MazeGame {
-    private Maze maze;
-    private Player player;
-    private boolean running;
+public final class MazeGame {
+    private final Maze maze;
+    private final Player player;
 
     public MazeGame(String mazeFilePath) {
         maze = new Maze(mazeFilePath);
         player = new Player(maze.getPlayerStartX(), maze.getPlayerStartY());
-        running = true;
     }
 
     public void runGame() {
-        Scanner scanner = new Scanner(System.in);
+        try (var input = new Scanner(System.in)) {
+            runGame(input);
+        }
+    }
 
-        // game play loop
-        while (running) {
-            // clear the console screen
-            System.out.print("\033[H\033[2J");
-            // print maze and player location
+    void runGame(Scanner input) {
+        while (true) {
             maze.print(player);
-
-            // get move from the user
-            System.out.print("Enter your move (WASD): ");
-            char move = scanner.next().toUpperCase().charAt(0);
-
-            // check if move is valid and execute
-            if (isValidMove(move)) {
-                performMove(move);
-
-                if (maze.isExit(player.getX(), player.getY())) {
-                    maze.print(player);
-                    System.out.println(
-                        "Congratulations! You've reached the exit!");
-                    running = false;
-                }
-            } else {
+            System.out.println("Enter a move (WASD), or Q to quit:");
+            if (!input.hasNextLine()) {
+                System.out.println("Input ended.");
+                return;
+            }
+            String move = input.nextLine().strip().toUpperCase(Locale.ROOT);
+            if (move.equals("Q")) {
+                System.out.println("Game ended.");
+                return;
+            }
+            if (!movePlayer(move)) {
                 System.out.println("Invalid move. Try again.");
+                continue;
+            }
+            if (maze.isExit(player.getX(), player.getY())) {
+                maze.print(player);
+                System.out.println("Congratulations! You've reached the exit!");
+                return;
             }
         }
     }
 
-    // check if the next move at the given direction will be valid
-    private boolean isValidMove(char direction) {
-        if (direction == 'W') {
-            return maze.isValidMove(player.getX(), player.getY() - 1);
-        } else if (direction == 'A') {
-            return maze.isValidMove(player.getX() - 1, player.getY());
-        } else if (direction == 'S') {
-            return maze.isValidMove(player.getX(), player.getY() + 1);
-        } else if (direction == 'D') {
-            return maze.isValidMove(player.getX() + 1, player.getY());
+    private boolean movePlayer(String move) {
+        int x = player.getX();
+        int y = player.getY();
+        switch (move) {
+            case "W" -> y--;
+            case "A" -> x--;
+            case "S" -> y++;
+            case "D" -> x++;
+            default -> { return false; }
         }
-        return false;
-    }
-
-    // execute the next move
-    private void performMove(char direction) {
-        if (direction == 'W') {
-            player.move(player.getX(), player.getY() - 1);
-        } else if (direction == 'A') {
-            player.move(player.getX() - 1, player.getY());
-        } else if (direction == 'S') {
-            player.move(player.getX(), player.getY() + 1);
-        } else if (direction == 'D') {
-            player.move(player.getX() + 1, player.getY());
-        }
+        if (!maze.isValidMove(x, y)) return false;
+        player.move(x, y);
+        return true;
     }
 }
