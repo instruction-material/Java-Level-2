@@ -1,14 +1,17 @@
-# Check-In #1 supplemental 3
+# Two Scoreboard Views
 
-Course: Java Level 2
-Module: Check-In #1 supplemental 3
+Show the same attempts in two orders. The points view uses highest points first and shortest time to break ties. The time view uses shortest time first and highest points to break ties.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. A `Comparator<Attempt>` supplies an ordering rule to a sort. Start with `Comparator.comparingInt` on the first getter. Apply `reversed()` to an individual key that needs descending order, then use `thenComparing` or `thenComparingInt` for a tie breaker.
+2. Pass each rule to `sortedCopy`. Sorting a new list leaves the input sequence intact. A stable sort keeps the input order of attempts tied on both keys.
+3. Predict both outputs. The driver shows `[West, East, North, South]` by points and `[North, South, West, East]` by time. The original remains `[North, East, West, South]`.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save and export the IDE workspace. Extract the ZIP and use Java 21 in that folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The unfinished starter compiles. The checks identify the first difference from the assignment requirements.

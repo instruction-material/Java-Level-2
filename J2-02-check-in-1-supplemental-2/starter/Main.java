@@ -1,15 +1,11 @@
-import java.util.List;
-
 public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        Ticket first = new Ticket();
+        Ticket second = new Ticket();
+        System.out.println("Ticket numbers: " + first.getNumber() + ", " + second.getNumber());
+        System.out.println("First redemption: " + first.redeem());
+        System.out.println("Repeated redemption: " + first.redeem());
+        System.out.println("Second ticket redeemed: " + second.isRedeemed());
+        System.out.println("Issued: " + Ticket.getIssuedCount() + ", redeemed: " + Ticket.getRedeemedCount());
     }
 }
