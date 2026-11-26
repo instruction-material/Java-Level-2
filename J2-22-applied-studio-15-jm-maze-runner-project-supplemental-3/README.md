@@ -1,14 +1,17 @@
-# Applied Studio 15: JM Maze Runner Project supplemental 3
+# Find a Shortest Maze Route
 
-Course: Java Level 2
-Module: Applied Studio 15: JM Maze Runner Project supplemental 3
+Find a route from P to E using the same legal moves as the maze runner. Each move has equal cost. This optional activity introduces a queue that explores nearby cells before farther ones.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Add the start to the queue. For each next cell, add each legal, previously unseen neighbor. Record its previous cell and move. That record also marks it as seen.
+2. When reaching E, trace previous cells back to the start and reverse the directions. If the queue empties first, return an empty list. The board has one distinct start and exit.
+3. The sample prints `Shortest route: [D, D]` on the practice board and `Blocked route: []` on the enclosed-board fixture. Trace the queue at each stage and explain why no longer alternative is returned.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented.

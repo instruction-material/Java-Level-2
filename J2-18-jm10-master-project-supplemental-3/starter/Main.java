@@ -1,15 +1,9 @@
-import java.util.List;
-
-public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
+class Main {
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        var commands = new Commands();
+        commands.register("double", value -> value * 2);
+        commands.register("next", value -> value + 1);
+        System.out.println("Double: " + commands.run("Double", 7));
+        System.out.println("Next: " + commands.run("next", 7));
     }
 }

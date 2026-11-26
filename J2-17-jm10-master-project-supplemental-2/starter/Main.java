@@ -1,15 +1,11 @@
-import java.util.List;
-
-public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
+class Main {
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        var review = new CheckReview();
+        review.record("win", true);
+        review.record("tie", false);
+        review.record("restart", false);
+        review.record("retry", false);
+        review.record("retry", true);
+        System.out.println("Open checks: " + review.openChecks());
     }
 }

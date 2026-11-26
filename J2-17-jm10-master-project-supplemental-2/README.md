@@ -1,14 +1,17 @@
-# JM10 Master Project supplemental 2
+# Review Capstone Checks
 
-Course: Java Level 2
-Module: JM10 Master Project supplemental 2
+Turn a project’s stated behaviors into an ordered list of checks. A check has a short label and either passes or stays open.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Record at most one current result per label. Reject a blank label and trim surrounding spaces.
+2. Sort the open labels without changing the stored results. Updating a check from open to passed removes it from the report.
+3. In the sample, the win and retry checks pass. The report is `Open checks: [restart, tie]`. Replace those labels with checks from an original capstone and explain what evidence would close each one.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented.

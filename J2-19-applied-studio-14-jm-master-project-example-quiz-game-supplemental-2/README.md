@@ -1,14 +1,17 @@
-# Applied Studio 14: JM Master Project Example Quiz Game supplemental 2
+# Summarize Quiz Attempts
 
-Course: Java Level 2
-Module: Applied Studio 14: JM Master Project Example Quiz Game supplemental 2
+Use fictional answer attempts to compare topics. Each attempt supplies a topic and a correct or incorrect result. Report correct answers and the total together.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Update one tally for the attempt’s topic. Count both correct and incorrect answers in the total. Do not reuse a tally from a different topic.
+2. Report topics in alphabetical order. The sample includes `History: 0/1` and `Science: 2/3`. An empty attempt list gives an empty report.
+3. Add another attempt and predict which numerator and denominator should change.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented.

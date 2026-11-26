@@ -1,0 +1,26 @@
+name: Java Level 2 capstone and practice workbooks
+on:
+  push:
+    paths:
+      - "JM10-Tic-Tac-Toe-Console/**"
+      - "JM10-Save-Round-Results/**"
+      - "J2-1[78]-jm10-master-project-supplemental-*/**"
+      - "J2-19-applied-studio-14-*/**"
+      - "J2-20-applied-studio-14-*/**"
+      - "J2-2[12]-applied-studio-15-*/**"
+      - ".github/workflows/capstone-studio-workbooks.yml"
+      - "tools/jm10-studios-course-contracts.json"
+      - "tools/verify-jm10-studios-workbooks.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: ./verify-course-source.sh
+      - run: JAVA_HOME="$JAVA_HOME_21_X64" python3 tools/verify-jm10-studios-workbooks.py

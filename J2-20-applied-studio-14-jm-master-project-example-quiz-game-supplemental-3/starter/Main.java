@@ -1,15 +1,11 @@
 import java.util.List;
 
-public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
+class Main {
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        var cards = List.of(new PracticeSet.Card("Science","What orbits Earth?"),
+            new PracticeSet.Card("History","What is an artifact?"),
+            new PracticeSet.Card("Science","What orbits Earth?"),
+            new PracticeSet.Card("Science","What is a solid?"));
+        System.out.println("Practice: " + PracticeSet.prompts(cards, "Science", 2));
     }
 }

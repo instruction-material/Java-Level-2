@@ -1,0 +1,190 @@
+{
+  "JM10-Tic-Tac-Toe-Console": {
+    "files": [
+      "Main.java",
+      "Board.java",
+      "MoveSource.java",
+      "GameSession.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "Board.java",
+    "demo": [
+      ". . . / . . . / . . .",
+      "Move for X (row column, or Q):",
+      "X . . / . . . / . . .",
+      "Move for O (row column, or Q):",
+      "X . . / O . . / . . .",
+      "Move for X (row column, or Q):",
+      "X X . / O . . / . . .",
+      "Move for O (row column, or Q):",
+      "X X . / O O . / . . .",
+      "Move for X (row column, or Q):",
+      "X X X / O O . / . . .",
+      "Winner: X"
+    ],
+    "starterDemo": [
+      ". . . / . . . / . . .",
+      "Move for X (row column, or Q):",
+      "X . . / . . . / . . .",
+      "Move for O (row column, or Q):",
+      "X . . / O . . / . . .",
+      "Move for X (row column, or Q):",
+      "X X . / O . . / . . .",
+      "Move for O (row column, or Q):",
+      "X X . / O O . / . . .",
+      "Move for X (row column, or Q):",
+      "X X X / O O . / . . .",
+      "Move for O (row column, or Q):",
+      "Round ended."
+    ],
+    "firstFailure": "row wins",
+    "checkLabel": "Capstone board checks passed",
+    "legacy": false,
+    "input": "1 1\n2 1\n1 2\n2 2\n1 3\n"
+  },
+  "JM10-Save-Round-Results": {
+    "files": [
+      "Main.java",
+      "Board.java",
+      "RoundArchive.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "RoundArchive.java",
+    "demo": [
+      "Reopened: [X_WINS, TIE, O_WINS]"
+    ],
+    "starterDemo": [
+      "Reopened: []"
+    ],
+    "firstFailure": "reopen completed rounds",
+    "checkLabel": "Round archive checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-17-jm10-master-project-supplemental-2": {
+    "files": [
+      "Main.java",
+      "CheckReview.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "CheckReview.java",
+    "demo": [
+      "Open checks: [restart, tie]"
+    ],
+    "starterDemo": [
+      "Open checks: []"
+    ],
+    "firstFailure": "sorted open checks",
+    "checkLabel": "Review checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-18-jm10-master-project-supplemental-3": {
+    "files": [
+      "Main.java",
+      "Commands.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "Commands.java",
+    "demo": [
+      "Double: 14",
+      "Next: 8"
+    ],
+    "starterDemo": [
+      "Double: 7",
+      "Next: 7"
+    ],
+    "firstFailure": "run the selected handler",
+    "checkLabel": "Command dispatch checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-19-applied-studio-14-jm-master-project-example-quiz-game-supplemental-2": {
+    "files": [
+      "Main.java",
+      "QuizReview.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "QuizReview.java",
+    "demo": [
+      "History: 0/1",
+      "Science: 2/3"
+    ],
+    "starterDemo": [],
+    "firstFailure": "count both outcomes",
+    "checkLabel": "Quiz summary checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-20-applied-studio-14-jm-master-project-example-quiz-game-supplemental-3": {
+    "files": [
+      "Main.java",
+      "PracticeSet.java",
+      "ContractTests.java",
+      "README.md"
+    ],
+    "primary": "PracticeSet.java",
+    "demo": [
+      "Practice: [What orbits Earth?, What is a solid?]"
+    ],
+    "starterDemo": [
+      "Practice: []"
+    ],
+    "firstFailure": "keep distinct prompts in original order",
+    "checkLabel": "Quiz practice set checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-21-applied-studio-15-jm-maze-runner-project-supplemental-2": {
+    "files": [
+      "Main.java",
+      "Maze.java",
+      "MoveHints.java",
+      "ContractTests.java",
+      "README.md",
+      "practice.txt"
+    ],
+    "primary": "MoveHints.java",
+    "demo": [
+      "From start: [D]",
+      "From middle: [A, D]"
+    ],
+    "starterDemo": [
+      "From start: []",
+      "From middle: []"
+    ],
+    "firstFailure": "one legal start direction",
+    "checkLabel": "Maze hint checks passed",
+    "legacy": false,
+    "input": ""
+  },
+  "J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3": {
+    "files": [
+      "Main.java",
+      "Maze.java",
+      "ShortestRoute.java",
+      "ContractTests.java",
+      "README.md",
+      "practice.txt",
+      "blocked.txt"
+    ],
+    "primary": "ShortestRoute.java",
+    "demo": [
+      "Shortest route: [D, D]",
+      "Blocked route: []"
+    ],
+    "starterDemo": [
+      "Shortest route: []",
+      "Blocked route: []"
+    ],
+    "firstFailure": "two-move shortest route",
+    "checkLabel": "Shortest route checks passed",
+    "legacy": false,
+    "input": ""
+  }
+}

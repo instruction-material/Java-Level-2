@@ -1,15 +1,7 @@
-import java.util.List;
-
-public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
+class Main {
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        var maze = new Maze("practice.txt");
+        System.out.println("From start: " + MoveHints.options(maze, maze.getPlayerStartX(), maze.getPlayerStartY()));
+        System.out.println("From middle: " + MoveHints.options(maze, 2, 1));
     }
 }
