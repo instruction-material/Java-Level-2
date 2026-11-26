@@ -1,15 +1,11 @@
-import java.util.List;
+import java.util.Map;
 
 public class Main {
-    private static int computeScore(List<Integer> values) {
-        int total = 0;
-        for (int value : values) {
-            // TODO: update the scoring rule.
-        }
-        return total;
-    }
-
     public static void main(String[] args) {
-        System.out.println(computeScore(List.of(2, 5, 8, 13)));
+        Stock stock = new Stock(Map.of("pen", 5, "folder", 3));
+        System.out.println("First request: " + stock.reserve(Map.of("pen", 2, "folder", 1)));
+        System.out.println("After first: " + stock.inventory());
+        System.out.println("Second request: " + stock.reserve(Map.of("pen", 1, "folder", 3)));
+        System.out.println("After second: " + stock.inventory());
     }
 }

@@ -1,14 +1,17 @@
-# JM5 Maps supplemental 2
+# Attendance by Room
 
-Course: Java Level 2
-Module: JM5 Maps supplemental 2
+Store a set of attending names for each room. The map keeps rooms separate. The set ignores repeated entries in the same room.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Use `computeIfAbsent` to create the first set for a room. Add the name to that set and return whether the attendance changed.
+2. Read a missing room as count zero. Reading it leaves the map unchanged.
+3. Enter Ada twice in Lab A and once in Lab B. The duplicate in Lab A returns false and each room has an independent count.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download its ZIP, and extract the folder. Use Java 21 in that folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter compiles. Its checks show which behavior still needs to be implemented.

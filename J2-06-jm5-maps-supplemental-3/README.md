@@ -1,14 +1,17 @@
-# JM5 Maps supplemental 3
+# All-or-Nothing Reservations
 
-Course: Java Level 2
-Module: JM5 Maps supplemental 3
+Use one map for available units and another for requested units. A reservation succeeds only when every requested item exists and has enough stock.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Check each requested quantity before changing the stock map. Reject unknown keys, nonpositive requests, and requests above the available units.
+2. After the whole request passes validation, subtract the requested units. A rejected request leaves every count unchanged.
+3. Reserve two pens and one folder. Next, request one pen together with too many folders. Confirm that the second request leaves both counts unchanged.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Save the IDE workspace, download its ZIP, and extract the folder. Use Java 21 in that folder.
 
-Quick run hint: `javac Main.java && java Main`
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter compiles. Its checks show which behavior still needs to be implemented.
