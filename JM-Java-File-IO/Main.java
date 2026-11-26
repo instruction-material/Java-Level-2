@@ -8,7 +8,7 @@ class Main {
         // File Input Example 1:
         // Reading in one piece of data per line
 
-        // Note: In USACO, the first line will always tell you the number of subsequent lines you need to read in
+        // In this format the first line gives the number of records that follow.
 
         // 1. open the file
         BufferedReader br = new BufferedReader(new FileReader("in1.in"));
@@ -55,6 +55,9 @@ class Main {
 
         // 5. close file
         br.close();
+
+        System.out.println("Numbers: " + Arrays.toString(nums));
+        System.out.println("Rows: " + Arrays.deepToString(nums2));
 
         // File Output Example:
 

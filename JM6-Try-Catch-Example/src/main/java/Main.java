@@ -1,18 +1,17 @@
-// Main.java
-
 class Main {
     public static void main(String[] args) {
+        int numerator = 10;
+        for (int divisor : new int[] {2, 0}) {
+            divide(numerator, divisor);
+        }
+        System.out.println("Both examples completed.");
+    }
 
-        // comment out this line how to see how the try catch statement below can stop our code from crashing!
-        int result = 10 / 0;
-
-        // the try block contains code we want to monitor for exceptions
-        // in this case, our code should throw an ArithmeticException because we are dividing by 0
+    private static void divide(int numerator, int divisor) {
         try {
-            int result = 10 / 0;
-            // Catch any exception and print out our error message rather than crashing the program
-        } catch (Exception e) {
-            System.out.println("An error occurred!");
+            System.out.println(numerator + " / " + divisor + " = " + numerator / divisor);
+        } catch (ArithmeticException exception) {
+            System.out.println("Cannot divide by zero.");
         }
     }
 }
