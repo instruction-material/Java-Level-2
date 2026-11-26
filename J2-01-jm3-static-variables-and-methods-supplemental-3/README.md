@@ -1,14 +1,19 @@
-# JM3 Static Variables & Methods supplemental 3
+# Static Scoring Practice
 
-Course: Java Level 2
-Module: JM3 Static Variables & Methods supplemental 3
+Score an even integer by halving it. Score an odd integer by doubling it. The rules include zero and negative values.
 
-Use the starter folder first. The starter is intentionally incomplete, and the solution shows one clean way to finish the same build after the student has worked through it.
+1. Use the static constants in `scoreOf(int)`. In the odd branch, cast to `long` before multiplying.
+2. Trace the supplied list as contributions `1 + 10 + 4 + 26`. The completed driver prints `41`.
+3. Explain why `computeScore` starts a new local total on every call. Try the same list twice and an empty list in between, expecting `41`, `0`, and `41`.
 
-Suggested flow:
-- Read the module brief and identify the core requirement.
-- Complete the TODO markers in the starter implementation.
-- Test at least one custom case beyond the default example.
-- Compare against the solution only after the student has a working draft.
+Compare a shared constant with a local accumulator. The rule can be shared while each call starts with its own result.
 
-Quick run hint: `javac Main.java && java Main`
+Save the IDE workspace, download its ZIP, and extract it. Use Java 21 in that folder.
+
+```sh
+javac --release 21 -Xlint:all -Werror *.java
+java Main
+java ContractTests
+```
+
+The starter compiles. Its behavior checks identify the first unfinished requirement.
